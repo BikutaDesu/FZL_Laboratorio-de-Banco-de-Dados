@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="aula_21-09-20:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:aulas" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:aulas" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4cf545b4-0c4a-4ffe-94a2-5a90313d9de8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Scripts/Variaveis, condicionais e repeticao.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scripts/Variaveis, condicionais e repeticao.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\victo\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.7319.50\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hsIXt2QiV1fuT84huoV7aETRyw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.38" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/aula_21-09-0/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="aula_21-09-20:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/aula_21-09-0" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_aula_21-09-20" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51293" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="aula_21-09-20:war" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4cf545b4-0c4a-4ffe-94a2-5a90313d9de8" name="Default Changelist" comment="" />
+      <created>1600793426410</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600793426410</updated>
+      <workItem from="1600793431670" duration="6196000" />
+      <workItem from="1600800423552" duration="3451000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="476" y="123" key="#Project_Structure" timestamp="1600799084609">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="476" y="123" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1600799084609" />
+    <state x="1152" y="413" key="#Tomcat_Server" timestamp="1600793985922">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1152" y="413" key="#Tomcat_Server/0.0.1920.1040@0.0.1920.1040" timestamp="1600793985922" />
+    <state x="828" y="178" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600794040275">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="828" y="178" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600794040275" />
+    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser" timestamp="1600794615443">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600794615443" />
+    <state x="1153" y="276" key="FileChooserDialogImpl" timestamp="1600799083340">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1153" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600799083340" />
+    <state width="619" height="278" key="GridCell.Tab.0.bottom" timestamp="1600804082236">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082236" />
+    <state width="619" height="278" key="GridCell.Tab.0.center" timestamp="1600804082236">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082236" />
+    <state width="619" height="278" key="GridCell.Tab.0.left" timestamp="1600804082236">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082236" />
+    <state width="619" height="278" key="GridCell.Tab.0.right" timestamp="1600804082236">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082236" />
+    <state width="619" height="278" key="GridCell.Tab.1.bottom" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.1.center" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.1.left" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.1.right" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.2.bottom" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.2.center" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.2.left" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state width="619" height="278" key="GridCell.Tab.2.right" timestamp="1600804082237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="619" height="278" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600804082237" />
+    <state x="230" y="186" key="SettingsEditor" timestamp="1600794190380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="230" y="186" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600794190380" />
+    <state x="1103" y="230" key="search.everywhere.popup" timestamp="1600794172988">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1103" y="230" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600794172988" />
+  </component>
+</project>
