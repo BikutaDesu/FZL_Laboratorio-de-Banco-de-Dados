@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.carnaval.dao.ApuracaoDAO;
 import br.com.carnaval.model.Apuracao;
 
-/**
- * Servlet implementation class HomeController
- */
 @WebServlet("/")
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +32,6 @@ public class HomeController extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			saida = e.getMessage();
 		} finally {
-
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			request.setAttribute("apuracoes", apuracoes);
 			rd.forward(request, response);

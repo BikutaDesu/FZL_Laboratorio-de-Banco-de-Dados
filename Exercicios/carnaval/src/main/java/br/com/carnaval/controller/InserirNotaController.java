@@ -59,9 +59,9 @@ public class InserirNotaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String saida = "";
-		Quesito quesito = new Quesito();
 
 		try {
+			Quesito quesito = new Quesito();
 			quesito.setId(Long.parseLong(request.getParameter("quesitoSelect")));
 
 			Jurado jurado = new Jurado();
@@ -76,12 +76,14 @@ public class InserirNotaController extends HttpServlet {
 
 			ApuracaoDAO apuracaoDao = new ApuracaoDAO();
 			apuracaoDao.insert(jurado, quesito, escola, nota);
-		
-			RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
-			rd.forward(request, response);
-			
+
 		} catch (ClassNotFoundException | NumberFormatException | SQLException e) {
 			saida = "Erro ao inserir a nota: " + e.getMessage();
+		}
+
+		if (saida.equals("")) {
+			response.sendRedirect("/carnaval");
+		} else {
 			HttpSession httpSession = request.getSession();
 			RequestDispatcher rd = request.getRequestDispatcher("/form.jsp");
 			request.setAttribute("escolas", httpSession.getAttribute("escolas"));
@@ -91,5 +93,4 @@ public class InserirNotaController extends HttpServlet {
 			rd.forward(request, response);
 		}
 	}
-
 }

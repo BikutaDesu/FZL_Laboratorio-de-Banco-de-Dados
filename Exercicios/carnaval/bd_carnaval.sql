@@ -4,41 +4,46 @@ create database carnaval;
 
 use carnaval;
 
-create table escolas(
-    id int not null identity,
-    nome varchar(64),
-    total_pontos decimal(3,1),
+create table escolas
+(
+    id           int not null identity,
+    nome         varchar(64),
+    total_pontos decimal(3, 1),
     primary key (id)
 );
 
-create table quesitos(
-    id int not null identity,
+create table quesitos
+(
+    id   int not null identity,
     nome varchar(32),
     primary key (id)
 );
 
-create table jurados(
-    id int not null identity,
+create table jurados
+(
+    id   int not null identity,
     nome varchar(128),
     primary key (id)
 );
 
-create table quesitos_jurados_notas(
-    id_nota int not null,
+create table quesitos_jurados_notas
+(
+    id_nota    int not null,
     id_quesito int not null,
-    id_jurado int not null,
+    id_jurado  int not null,
     primary key (id_nota, id_quesito, id_jurado),
-    foreign key (id_jurado) references jurados(id),
-    foreign key (id_quesito) references quesitos(id),
-    foreign key (id_nota) references notas(id)
+    foreign key (id_jurado) references jurados (id),
+    foreign key (id_quesito) references quesitos (id),
+    foreign key (id_nota) references notas (id)
 );
 
-create table notas(
-    id int not null identity,
+create table notas
+(
+    id        int not null identity,
     id_escola int not null,
-    nota decimal(3,1),
-    posicao int not null
-    primary key (id),
+    nota      decimal(3, 1),
+    posicao   int not null
+        primary key (id),
     foreign key (id_escola) references escolas (id)
 )
 
@@ -76,12 +81,10 @@ values ('Raizer Varela'),
        ('Victor Neves'),
        ('Júlio Barcelos')
 
-create procedure sp_inserirNota(
-    @id_jurado int,
-    @id_quesito int,
-    @id_escola int,
-    @nota decimal(3,1)
-    )
+create procedure sp_inserirNota(@id_jurado int,
+                                @id_quesito int,
+                                @id_escola int,
+                                @nota decimal(3, 1))
 as
 begin
     declare @id_nota int
@@ -92,156 +95,206 @@ begin
     set @qtdNotasEscola = (select dbo.fn_qtdNotasEscola(@id_escola))
     set @qtdNotasQuesito = (select dbo.fn_qtdNotasQuesitoEscola(@id_escola, @id_quesito))
 
-    if @qtdNotasEscola < 45
-        if @qtdNotasQuesito < 5
-            if (@id_jurado not in (select j.id from dbo.fn_juradosQueJaVotaram (@id_escola, @id_quesito) as j))
-            begin
-                set @posicao_nota = (select dbo.fn_qtdNotasQuesitoEscola(@id_escola, @id_quesito)) + 1
-                insert into notas values(@id_escola, @nota, @posicao_nota)
-                set @id_nota = (select MAX(n.id) from notas n)
-                insert into quesitos_jurados_notas values (@id_nota, @id_quesito, @id_jurado)
-                exec sp_notaTotalEscola @id_escola
-            end
+    if @nota >= 5 and @nota <= 10
+        if @qtdNotasEscola < 45
+            if @qtdNotasQuesito < 5
+                if (@id_jurado not in (select j.id from dbo.fn_juradosQueJaVotaram(@id_escola, @id_quesito) as j))
+                    begin
+                        set @posicao_nota = (select dbo.fn_qtdNotasQuesitoEscola(@id_escola, @id_quesito)) + 1
+                        insert into notas values (@id_escola, @nota, @posicao_nota)
+                        set @id_nota = (select MAX(n.id) from notas n)
+                        insert into quesitos_jurados_notas values (@id_nota, @id_quesito, @id_jurado)
+                        exec sp_notaTotalEscola @id_escola
+                    end
+                else
+                    raiserror ('O Jurado já votou nesse quesito', 16, 1)
             else
-                raiserror('O Jurado já votou nesse quesito', 16, 1)
+                raiserror ('Todas as notas para esse quesito já foram cadastradas!', 16, 1)
         else
-            raiserror('Todas as notas para esse quesito já foram cadastradas!', 16, 1)
+            raiserror ('Todas as notas para essa escola já foram cadastradas!', 16, 1)
     else
-        raiserror('Todas as notas para essa escola já foram cadastradas!', 16, 1)
+        raiserror ('A nota deve estar entre 5 e 10!', 16, 1)
 end
 go;
 
 create function fn_qtdNotasEscola(
     @id_escola int
 )
-returns int
+    returns int
 as
 begin
-    return (select count(n.id) as qtd_notas from notas n
-            inner join escolas e on e.id = n.id_escola
-            inner join quesitos_jurados_notas qjn on qjn.id_nota = n.id
-            inner join jurados j on j.id = qjn.id_jurado
+    return (select count(n.id) as qtd_notas
+            from notas n
+                     inner join escolas e on e.id = n.id_escola
+                     inner join quesitos_jurados_notas qjn on qjn.id_nota = n.id
+                     inner join jurados j on j.id = qjn.id_jurado
             where e.id = @id_escola)
 end
 go;
 
-create function fn_juradosQueJaVotaram(
-    @id_escola int,
-    @id_quesito int
-)
-returns @tabela table(
-    id int
-)
+create function fn_juradosQueJaVotaram(@id_escola int,
+                                       @id_quesito int)
+    returns @tabela table
+                    (
+                        id int
+                    )
 as
 begin
     insert into @tabela
-        select j.id from jurados j
-        inner join quesitos_jurados_notas qjn on j.id = qjn.id_jurado
-        inner join notas n on qjn.id_nota = n.id
-        inner join escolas e on e.id = n.id_escola
-        where e.id = @id_escola and qjn.id_quesito = @id_quesito
+    select j.id
+    from jurados j
+             inner join quesitos_jurados_notas qjn on j.id = qjn.id_jurado
+             inner join notas n on qjn.id_nota = n.id
+             inner join escolas e on e.id = n.id_escola
+    where e.id = @id_escola
+      and qjn.id_quesito = @id_quesito
     return
 end
 go;
-create function fn_qtdNotasQuesitoEscola(
-    @id_escola int,
-    @id_quesito int
-)
-returns int
-as
-begin
-    return (select count(n.id) as qtd_notas from notas n
-            inner join escolas e on e.id = n.id_escola
-            inner join quesitos_jurados_notas qjn on qjn.id_nota = n.id
-            inner join jurados j on j.id = qjn.id_jurado
-            where e.id = @id_escola and qjn.id_quesito = @id_quesito)
-end
-go;
 
-create function fn_notaQuesitoEscolaPosicao(
-    @id_escola int,
-    @id_quesito int,
-    @posicao int
-)
-returns decimal(3,1)
+create function fn_qtdNotasQuesitoEscola(@id_escola int,
+                                         @id_quesito int)
+    returns int
 as
 begin
-    return (select n.nota from notas n
-            inner join quesitos_jurados_notas qjn
-              on qjn.id_nota = n.id
-            where id_escola = @id_escola and n.posicao = @posicao
+    return (select count(n.id) as qtd_notas
+            from notas n
+                     inner join quesitos_jurados_notas qjn on qjn.id_nota = n.id
+            where n.id_escola = @id_escola
               and qjn.id_quesito = @id_quesito)
 end
 go;
 
-create function fn_mediaNotasQuesitoEscola(
-    @id_escola int,
-    @id_quesito int
-)
-returns decimal(3,1)
+create function fn_notaQuesitoEscolaPosicao(@id_escola int,
+                                            @id_quesito int,
+                                            @posicao int)
+    returns decimal(3, 1)
 as
 begin
-    return (select AVG(n.nota) from notas n
-    left outer join quesitos_jurados_notas qjn
-    on qjn.id_nota = n.id
-    where n.nota != (select MAX(n.nota) from notas n
-            inner join quesitos_jurados_notas qjn
-              on qjn.id_nota = n.id
+    return (select n.nota
+            from notas n
+                     inner join quesitos_jurados_notas qjn
+                                on qjn.id_nota = n.id
             where id_escola = @id_escola
+              and n.posicao = @posicao
               and qjn.id_quesito = @id_quesito)
-        and n.nota != (select MIN(n.nota) from notas n
-            inner join quesitos_jurados_notas qjn
-              on qjn.id_nota = n.id
-            where id_escola = @id_escola
-              and qjn.id_quesito = @id_quesito))
 end
 go;
 
-create function fn_tabelaNotasQuesitoEscola(
-    @id_escola int,
-    @id_quesito int
-)
-returns @tabela table(
-    id int identity,
-    escola varchar(64),
-    quesito varchar(32),
-    nota1 decimal(3,1),
-    nota2 decimal(3,1),
-    nota3 decimal(3,1),
-    nota4 decimal(3,1),
-    nota5 decimal(3,1),
-    maior_nota decimal(3,1),
-    menor_nota decimal(3,1),
-    nota_final decimal(3,1)
+create function fn_mediaNotasQuesitoEscola(@id_escola int,
+                                           @id_quesito int)
+    returns decimal(3, 1)
+as
+begin
+    declare @maior_nota decimal(3, 1)
+    declare @menor_nota decimal(3, 1)
+    declare @qtd_notas int
+    declare @soma decimal(3, 1)
+
+    set @maior_nota = (select MAX(n.nota)
+                       from notas n
+                                inner join quesitos_jurados_notas qjn
+                                           on qjn.id_nota = n.id
+                       where id_escola = @id_escola
+                         and qjn.id_quesito = @id_quesito)
+
+    set @menor_nota = (select MIN(n.nota)
+                       from notas n
+                                inner join quesitos_jurados_notas qjn
+                                           on qjn.id_nota = n.id
+                       where id_escola = @id_escola
+                         and qjn.id_quesito = @id_quesito)
+
+    set @qtd_notas = (select dbo.fn_qtdNotasQuesitoEscola(@id_escola, @id_quesito))
+
+    set @soma = (select sum(n.nota)
+                 from notas n
+                          inner join quesitos_jurados_notas q on n.id = q.id_nota
+                 where q.id_quesito = @id_quesito
+                   and n.id_escola = @id_escola)
+
+    return (select case
+                       when (@qtd_notas > 3) then (@soma - (@maior_nota + @menor_nota)) / (@qtd_notas - 2)
+                       else @soma / @qtd_notas end as media
     )
+end
+go;
+
+create function fn_tabelaNotasQuesitoEscola(@id_escola int,
+                                            @id_quesito int)
+    returns @tabela table
+                    (
+                        id         int identity,
+                        escola     varchar(64),
+                        quesito    varchar(32),
+                        nota1      decimal(3, 1),
+                        nota2      decimal(3, 1),
+                        nota3      decimal(3, 1),
+                        nota4      decimal(3, 1),
+                        nota5      decimal(3, 1),
+                        maior_nota decimal(3, 1),
+                        menor_nota decimal(3, 1),
+                        nota_final decimal(3, 1)
+                    )
 as
 begin
     insert into @tabela(quesito)
-            select q.nome from quesitos q
-            where q.id = @id_quesito
+    select q.nome
+    from quesitos q
+    where q.id = @id_quesito
 
     update @tabela set escola = (select e.nome from escolas e where e.id = @id_escola)
 
-    update @tabela set nota1 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola,@id_quesito, 1))
+    update @tabela set nota1 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola, @id_quesito, 1))
 
-    update @tabela set nota2 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola,@id_quesito, 2))
+    update @tabela set nota2 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola, @id_quesito, 2))
 
-    update @tabela set nota3 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola,@id_quesito, 3))
+    update @tabela set nota3 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola, @id_quesito, 3))
 
-    update @tabela set maior_nota = (select MAX(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
-    update @tabela set menor_nota = (select MIN(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
+    update @tabela
+    set maior_nota = (select MAX(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
+    update @tabela
+    set menor_nota = (select MIN(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
 
-    update @tabela set nota4 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola,@id_quesito, 4))
+    update @tabela set nota4 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola, @id_quesito, 4))
 
-    update @tabela set maior_nota = (select MAX(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
-    update @tabela set menor_nota = (select MIN(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
+    update @tabela
+    set maior_nota = (select MAX(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
+    update @tabela
+    set menor_nota = (select MIN(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
 
-    update @tabela set nota5 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola,@id_quesito, 5))
+    update @tabela set nota5 = (select dbo.fn_notaQuesitoEscolaPosicao(@id_escola, @id_quesito, 5))
 
-    update @tabela set maior_nota = (select MAX(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
-    update @tabela set menor_nota = (select MIN(n.nota) from notas n inner join quesitos_jurados_notas j on j.id_nota = n.id where n.id_escola = @id_escola and j.id_quesito = @id_quesito)
+    update @tabela
+    set maior_nota = (select MAX(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
+    update @tabela
+    set menor_nota = (select MIN(n.nota)
+                      from notas n
+                               inner join quesitos_jurados_notas j on j.id_nota = n.id
+                      where n.id_escola = @id_escola
+                        and j.id_quesito = @id_quesito)
 
-        update @tabela set nota_final = (select dbo.fn_mediaNotasQuesitoEscola(@id_escola,@id_quesito))
+    update @tabela set nota_final = (select dbo.fn_mediaNotasQuesitoEscola(@id_escola, @id_quesito))
 
     return
 end
@@ -253,68 +306,75 @@ create procedure sp_notaTotalEscola(
 as
 begin
     declare @qtdTotalNotas int
-    declare @totalNotas decimal(3,1)
-    declare @mediaNotas decimal(3,1)
+    declare @totalNotas decimal(3, 1)
+    declare @mediaNotas decimal(3, 1)
     declare @i int
 
-    select nota from notas n
-    inner join escolas e on e.id = n.id_escola where e.id = @id_escola;
+    select nota
+    from notas n
+             inner join escolas e on e.id = n.id_escola
+    where e.id = @id_escola;
 
     set @qtdTotalNotas = dbo.fn_qtdNotasEscola(@id_escola)
 
     if @qtdTotalNotas = 45
-    begin
-        set @i = 1
-        while @i <= 9
         begin
-            set @totalNotas = @totalNotas + (select nota_final from dbo.fn_tabelaNotasQuesitoEscola (@id_escola,@i))
+            set @i = 1
+            while @i <= 9
+                begin
+                    set @totalNotas =
+                                @totalNotas + (select nota_final from dbo.fn_tabelaNotasQuesitoEscola(@id_escola, @i))
 
-            set @i = @i + 1
+                    set @i = @i + 1
+                end
+            set @mediaNotas = @totalNotas / 9
+            update escolas set total_pontos = @mediaNotas where id = @id_escola
         end
-        set @mediaNotas = @totalNotas / 9
-        update escolas set total_pontos = @mediaNotas where id = @id_escola
-    end
 end
 go;
 
-create function fn_quesitosRestantes(
-    @id_jurado int,
-    @id_escola int
-)
-returns @tabela table (
-    id int,
-    quesito varchar(32)
-    )
+create function fn_quesitosRestantes(@id_jurado int,
+                                     @id_escola int)
+    returns @tabela table
+                    (
+                        id      int,
+                        quesito varchar(32)
+                    )
 as
 begin
     insert into @tabela
-        select q.id, q.nome from quesitos q
-            inner join quesitos_jurados_notas qjn
-                on q.id = qjn.id_quesito
-            where ( select COUNT(n.id) from notas n
-                        inner join quesitos_jurados_notas qjn
-                            on n.id = qjn.id_nota
-                        where qjn.id_jurado = @id_jurado and n.id_escola = @id_escola
-                ) < 5
+    select q.id, q.nome
+    from quesitos q
+             inner join quesitos_jurados_notas qjn
+                        on q.id = qjn.id_quesito
+    where (select COUNT(n.id)
+           from notas n
+                    inner join quesitos_jurados_notas qjn
+                               on n.id = qjn.id_nota
+           where qjn.id_jurado = @id_jurado
+             and n.id_escola = @id_escola
+          ) < 5
     return
 end
 go;
 
 create function fn_escolasRestantes()
-returns @tabela table (
-    id int,
-    escola varchar(32),
-    total decimal(3,1)
-    )
+    returns @tabela table
+                    (
+                        id     int,
+                        escola varchar(32),
+                        total  decimal(3, 1)
+                    )
 as
 begin
     insert into @tabela
-        select e.id, e.nome, e.total_pontos from escolas e
-            left outer join notas n on e.id = n.id_escola
-            left outer join quesitos_jurados_notas qjn
-                on n.id = qjn.id_nota
-            group by e.id, e.nome, e.total_pontos
-            having COUNT(n.id) < 60
+    select e.id, e.nome, e.total_pontos
+    from escolas e
+             left outer join notas n on e.id = n.id_escola
+             left outer join quesitos_jurados_notas qjn
+                             on n.id = qjn.id_nota
+    group by e.id, e.nome, e.total_pontos
+    having COUNT(n.id) < 60
     return
 end
 go;
