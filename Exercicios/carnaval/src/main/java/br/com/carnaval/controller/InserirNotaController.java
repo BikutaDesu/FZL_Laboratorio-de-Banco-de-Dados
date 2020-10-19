@@ -77,7 +77,7 @@ public class InserirNotaController extends HttpServlet {
 			ApuracaoDAO apuracaoDao = new ApuracaoDAO();
 			apuracaoDao.insert(jurado, quesito, escola, nota);
 		
-			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
 			rd.forward(request, response);
 			
 		} catch (ClassNotFoundException | NumberFormatException | SQLException e) {
