@@ -19,7 +19,7 @@ public class EscolaDAO {
 	}
 	
 	public List<Escola> selectAll() throws SQLException{
-		String sql = "SELECT * FROM escolas";
+		String sql = "SELECT * FROM dbo.fn_escolasRestantes()";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		
@@ -28,8 +28,8 @@ public class EscolaDAO {
 		while (rs.next()) {
 			Escola escola = new Escola();
 			escola.setId(rs.getLong("id"));
-			escola.setNome(rs.getString("nome"));
-			escola.setNotaTotal(rs.getFloat("total_pontos"));
+			escola.setNome(rs.getString("escola"));
+			escola.setNotaTotal(rs.getFloat("total"));
 			
 			escolas.add(escola);
 		}

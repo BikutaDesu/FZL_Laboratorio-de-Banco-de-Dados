@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.carnaval.dao.ApuracaoDAO;
 import br.com.carnaval.dao.EscolaDAO;
@@ -34,7 +35,6 @@ public class InserirNotaController extends HttpServlet {
 		List<Escola> escolas = null;
 		List<Jurado> jurados = null;
 		List<Quesito> quesitos = null;
-
 		try {
 			EscolaDAO escolaDao = new EscolaDAO();
 			escolas = escolaDao.selectAll();
@@ -47,9 +47,10 @@ public class InserirNotaController extends HttpServlet {
 			saida = e.getMessage();
 		} finally {
 			RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-			request.setAttribute("escolas", escolas);
-			request.setAttribute("jurados", jurados);
-			request.setAttribute("quesitos", quesitos);
+			HttpSession httpSession = request.getSession();
+			httpSession.setAttribute("escolas", escolas);
+			httpSession.setAttribute("jurados", jurados);
+			httpSession.setAttribute("quesitos", quesitos);
 			rd.forward(request, response);
 		}
 
@@ -59,32 +60,36 @@ public class InserirNotaController extends HttpServlet {
 			throws ServletException, IOException {
 		String saida = "";
 		Quesito quesito = new Quesito();
-		quesito.setId(Long.parseLong(request.getParameter("quesitoSelect")));
-		
-		Jurado jurado = new Jurado();
-		jurado.setId(Long.parseLong(request.getParameter("juradoSelect")));
-		
-		Escola escola = new Escola();
-		escola.setId(Long.parseLong(request.getParameter("escolaSelect")));
-		
-		Float nota = Float.parseFloat(request.getParameter("inputNota").replace(',', '.'));
-		DecimalFormat df = new DecimalFormat("00.0");
-		df.format(nota);
-		
+
 		try {
+			quesito.setId(Long.parseLong(request.getParameter("quesitoSelect")));
+
+			Jurado jurado = new Jurado();
+			jurado.setId(Long.parseLong(request.getParameter("juradoSelect")));
+
+			Escola escola = new Escola();
+			escola.setId(Long.parseLong(request.getParameter("escolaSelect")));
+
+			Float nota = Float.parseFloat(request.getParameter("inputNota").replace(',', '.'));
+			DecimalFormat df = new DecimalFormat("00.0");
+			df.format(nota);
+
 			ApuracaoDAO apuracaoDao = new ApuracaoDAO();
 			apuracaoDao.insert(jurado, quesito, escola, nota);
-		} catch (ClassNotFoundException | SQLException e) {
-			saida = e.getMessage();
-			RequestDispatcher rd = request.getRequestDispatcher("/carnaval/inserir");
+		
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			
+		} catch (ClassNotFoundException | NumberFormatException | SQLException e) {
+			saida = "Erro ao inserir a nota: " + e.getMessage();
+			HttpSession httpSession = request.getSession();
+			RequestDispatcher rd = request.getRequestDispatcher("/form.jsp");
+			request.setAttribute("escolas", httpSession.getAttribute("escolas"));
+			request.setAttribute("jurados", httpSession.getAttribute("jurados"));
+			request.setAttribute("quesitos", httpSession.getAttribute("quesitos"));
 			request.setAttribute("saida", saida);
 			rd.forward(request, response);
-		} finally {
-			response.sendRedirect("/carnaval");
 		}
-		
-		
-		
 	}
 
 }

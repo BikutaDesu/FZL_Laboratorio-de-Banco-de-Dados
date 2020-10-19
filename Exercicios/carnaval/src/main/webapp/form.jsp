@@ -59,7 +59,7 @@
 			<button type="submit" class="btn btn-primary">Inserir nota</button>
 		</form>
 		<c:if test="${saida != null }">
-			<div class="alert alert-danger" role="alert">
+			<div class="alert alert-danger mt-5" role="alert">
 				<c:out value="${saida }"></c:out>
 			</div>
 		</c:if>
