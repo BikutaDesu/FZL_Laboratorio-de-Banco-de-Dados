@@ -1,11 +1,15 @@
 package com.lbd.gp.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.lbd.gp.model.compositekey.ProvaId;
@@ -13,8 +17,8 @@ import com.lbd.gp.model.compositekey.ProvaId;
 @Entity
 @IdClass(ProvaId.class)
 @Table(name = "prova")
-public class Prova implements Serializable{
-	
+public class Prova implements Serializable {
+
 	@Id
 	private Integer id;
 	@Id
@@ -29,11 +33,14 @@ public class Prova implements Serializable{
 	private Integer ouro;
 	private Integer prata;
 	private Integer bronze;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "prova", fetch = FetchType.LAZY)
+	private List<Score> scores;
 
 	public Prova() {
 
 	}
-	
+
 	public Prova(Integer id, Boolean sexo, String nome, Boolean tipo, String recordM, String recordE, Integer ouro,
 			Integer prata, Integer bronze) {
 		super();
@@ -117,5 +124,5 @@ public class Prova implements Serializable{
 	public void setBronze(Integer bronze) {
 		this.bronze = bronze;
 	}
-
+	
 }
