@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lbd.gp.model.Prova;
 import com.lbd.gp.repository.ProvaRepository;
+import com.lbd.gp.repository.RankingRepository;
 
 @Controller
 @RequestMapping("/")

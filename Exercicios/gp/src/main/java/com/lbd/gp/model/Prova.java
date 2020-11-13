@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -15,14 +16,11 @@ import javax.persistence.Table;
 import com.lbd.gp.model.compositekey.ProvaId;
 
 @Entity
-@IdClass(ProvaId.class)
 @Table(name = "prova")
 public class Prova implements Serializable {
 
-	@Id
-	private Integer id;
-	@Id
-	private Boolean sexo;
+	@EmbeddedId
+	private ProvaId provaId;
 
 	private String nome;
 	private Boolean tipo;
@@ -33,7 +31,7 @@ public class Prova implements Serializable {
 	private Integer ouro;
 	private Integer prata;
 	private Integer bronze;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "prova", fetch = FetchType.LAZY)
 	private List<Score> scores;
 
@@ -53,20 +51,12 @@ public class Prova implements Serializable {
 		this.bronze = bronze;
 	}
 
-	public Integer getId() {
-		return id;
+	public ProvaId getProvaId() {
+		return provaId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Boolean getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(Boolean sexo) {
-		this.sexo = sexo;
+	public void setProvaId(ProvaId provaId) {
+		this.provaId = provaId;
 	}
 
 	public String getNome() {
@@ -124,5 +114,5 @@ public class Prova implements Serializable {
 	public void setBronze(Integer bronze) {
 		this.bronze = bronze;
 	}
-	
+
 }

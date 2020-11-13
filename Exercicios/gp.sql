@@ -48,16 +48,16 @@ FOREIGN KEY (prova, sexo) REFERENCES prova(id, sexo)
 -- Registros de Exemplo
 
 INSERT INTO prova(sexo, nome, tipo) VALUES
-	(0, 'Lançamento de Dardo / Javelin Throw', 0),
-	(1, 'Salto em Distância / Long Jump', 0),
+	(0, 'Lanï¿½amento de Dardo / Javelin Throw', 0),
+	(1, 'Salto em Distï¿½ncia / Long Jump', 0),
 	(1, 'Salto com Vara / Pole Vault', 0),
 	(1, '400m com barreiras / 400m hurdles', 1),
 	(0, '100m', 1),
 	(0, 'Arremesso de Peso / Shot Put', 0),
 	(1, '100m', 1),
 	(1, '3000m', 1),
-	(1, 'Lançamento de Disco / Discus Throw', 0),
-	(0, '3000m com obstáculos / 3000m steeplechase', 1),
+	(1, 'Lanï¿½amento de Disco / Discus Throw', 0),
+	(0, '3000m com obstï¿½culos / 3000m steeplechase', 1),
 	(0, 'Salto Triplo / Triple Jump', 0),
 	(1, '400m', 1),
 	(0, '800m', 1),
@@ -66,211 +66,211 @@ INSERT INTO prova(sexo, nome, tipo) VALUES
 	(1, '200m', 1)
 
 INSERT INTO pais VALUES
-	('AFG','Afeganistão'),
-	('ALB','Albânia'),
-	('ALG','Argélia'),
+	('AFG','Afeganistï¿½o'),
+	('ALB','Albï¿½nia'),
+	('ALG','Argï¿½lia'),
 	('AND','Andorra'),
 	('ANG','Angola'),
-	('ANT','Antígua e Barbuda'),
+	('ANT','Antï¿½gua e Barbuda'),
 	('ASA','Samoa Americana'),
 	('ARG','Argentina'),
-	('ARM','Armênia'),
+	('ARM','Armï¿½nia'),
 	('ARU','Aruba'),
-	('AUS','Austrália'),
-	('AUT','Áustria'),
-	('AZE','Azerbaijão'),
+	('AUS','Austrï¿½lia'),
+	('AUT','ï¿½ustria'),
+	('AZE','Azerbaijï¿½o'),
 	('BAH','Bahamas'),
 	('BAN','Bangladesh'),
 	('BAR','Barbados'),
 	('BDI','Burundi'),
-	('BEL','Bélgica'),
+	('BEL','Bï¿½lgica'),
 	('BEN','Benim'),
 	('BER','Bermudas'),
-	('BHU','Butão'),
-	('BIH','Bósnia e Herzegovina'),
+	('BHU','Butï¿½o'),
+	('BIH','Bï¿½snia e Herzegovina'),
 	('BIZ','Belize'),
-	('BLR','Bielorrússia'),
-	('BOL','Bolívia'),
+	('BLR','Bielorrï¿½ssia'),
+	('BOL','Bolï¿½via'),
 	('BOT','Botswana'),
 	('BRA','Brasil'),
 	('BRN','Bahrein'),
 	('BRU','Brunei'),
-	('BUL','Bulgária'),
+	('BUL','Bulgï¿½ria'),
 	('BUR','Burkina Faso'),
-	('CAF','República Centro-Africana'),
+	('CAF','Repï¿½blica Centro-Africana'),
 	('CAM','Camboja'),
-	('CAN','Canadá'),
+	('CAN','Canadï¿½'),
 	('CAY','Ilhas Cayman'),
-	('CGO','República do Congo'),
+	('CGO','Repï¿½blica do Congo'),
 	('CHA','Chade'),
 	('CHI','Chile'),
 	('CHN','China'),
 	('CIV','Costa do Marfim'),
-	('CMR','Camarões'),
-	('COD','República Democrática do Congo'),
+	('CMR','Camarï¿½es'),
+	('COD','Repï¿½blica Democrï¿½tica do Congo'),
 	('COK','Ilhas Cook'),
-	('COL','Colômbia'),
+	('COL','Colï¿½mbia'),
 	('COM','Comores'),
 	('CPV','Cabo Verde'),
 	('CRC','Costa Rica'),
-	('CRO','Croácia'),
+	('CRO','Croï¿½cia'),
 	('CUB','Cuba'),
 	('CYP','Chipre'),
-	('CZE','Chéquia'),
+	('CZE','Chï¿½quia'),
 	('DEN','Dinamarca'),
 	('DJI','Djibouti'),
 	('DMA','Dominica'),
-	('DOM','República Dominicana'),
+	('DOM','Repï¿½blica Dominicana'),
 	('ECU','Equador'),
 	('EGY','Egito'),
 	('ERI','Eritreia'),
 	('ESA','El Salvador'),
 	('ESP','Espanha'),
-	('EST','Estónia'),
-	('ETH','Etiópia'),
+	('EST','Estï¿½nia'),
+	('ETH','Etiï¿½pia'),
 	('FIJ','Fiji'),
-	('FIN','Finlândia'),
-	('FRA','França'),
-	('FSM','Estados Federados da Micronésia'),
-	('GAB','Gabão'),
-	('GAM','Gâmbia'),
+	('FIN','Finlï¿½ndia'),
+	('FRA','Franï¿½a'),
+	('FSM','Estados Federados da Micronï¿½sia'),
+	('GAB','Gabï¿½o'),
+	('GAM','Gï¿½mbia'),
 	('GBR','Reino Unido'),
-	('GBS','Guiné-Bissau'),
-	('GEO','Geórgia'),
-	('GEQ','Guiné Equatorial'),
+	('GBS','Guinï¿½-Bissau'),
+	('GEO','Geï¿½rgia'),
+	('GEQ','Guinï¿½ Equatorial'),
 	('GER','Alemanha'),
 	('GHA','Gana'),
-	('GRE','Grécia'),
+	('GRE','Grï¿½cia'),
 	('GRN','Granada'),
 	('GUA','Guatemala'),
-	('GUI','Guiné'),
+	('GUI','Guinï¿½'),
 	('GUM','Guam'),
 	('GUY','Guiana'),
 	('HAI','Haiti'),
 	('HKG','Hong Kong'),
 	('HON','Honduras'),
 	('HUN','Hungria'),
-	('INA','Indonésia'),
-	('IND','Índia'),
-	('IRI','Irã'),
+	('INA','Indonï¿½sia'),
+	('IND','ï¿½ndia'),
+	('IRI','Irï¿½'),
 	('IRL','Irlanda'),
 	('IRQ','Iraque'),
-	('ISL','Islândia'),
+	('ISL','Islï¿½ndia'),
 	('ISR','Israel'),
 	('ISV','Ilhas Virgens Americanas'),
-	('ITA','Itália'),
-	('IVB','Ilhas Virgens Britânicas'),
+	('ITA','Itï¿½lia'),
+	('IVB','Ilhas Virgens Britï¿½nicas'),
 	('JAM','Jamaica'),
-	('JOR','Jordânia'),
-	('JPN','Japão'),
-	('KAZ','Cazaquistão'),
-	('KEN','Quênia'),
-	('KGZ','Quirguistão'),
+	('JOR','Jordï¿½nia'),
+	('JPN','Japï¿½o'),
+	('KAZ','Cazaquistï¿½o'),
+	('KEN','Quï¿½nia'),
+	('KGZ','Quirguistï¿½o'),
 	('KIR','Kiribati'),
 	('KOR','Coreia do Sul'),
 	('KOS','Kosovo'),
-	('KSA','Arábia Saudita'),
+	('KSA','Arï¿½bia Saudita'),
 	('KUW','Kuwait'),
 	('LAO','Laos'),
-	('LAT','Letônia'),
-	('LBA','Líbia'),
-	('LBR','Libéria'),
-	('LCA','Santa Lúcia'),
+	('LAT','Letï¿½nia'),
+	('LBA','Lï¿½bia'),
+	('LBR','Libï¿½ria'),
+	('LCA','Santa Lï¿½cia'),
 	('LES','Lesoto'),
-	('LBN','Líbano'),
+	('LBN','Lï¿½bano'),
 	('LIE','Liechtenstein'),
-	('LTU','Lituânia'),
+	('LTU','Lituï¿½nia'),
 	('LUX','Luxemburgo'),
-	('MAD','Madagáscar'),
+	('MAD','Madagï¿½scar'),
 	('MAR','Marrocos'),
-	('MAS','Malásia'),
+	('MAS','Malï¿½sia'),
 	('MAW','Malawi'),
-	('MDA','Moldávia'),
+	('MDA','Moldï¿½via'),
 	('MDV','Maldivas'),
-	('MEX','México'),
-	('MGL','Mongólia'),
+	('MEX','Mï¿½xico'),
+	('MGL','Mongï¿½lia'),
 	('MHL','Ilhas Marshall'),
-	('MKD','Macedônia do Norte'),
+	('MKD','Macedï¿½nia do Norte'),
 	('MLI','Mali'),
 	('MLT','Malta'),
 	('MNE','Montenegro'),
-	('MON','Mónaco'),
-	('MOZ','Moçambique'),
-	('MRI','Maurícia'),
-	('MTN','Mauritânia'),
+	('MON','Mï¿½naco'),
+	('MOZ','Moï¿½ambique'),
+	('MRI','Maurï¿½cia'),
+	('MTN','Mauritï¿½nia'),
 	('MYA','Mianmar'),
-	('NAM','Namíbia'),
-	('NCA','Nicarágua'),
-	('NED','Países Baixos'),
+	('NAM','Namï¿½bia'),
+	('NCA','Nicarï¿½gua'),
+	('NED','Paï¿½ses Baixos'),
 	('NEP','Nepal'),
-	('NGR','Nigéria'),
-	('NIG','Níger'),
+	('NGR','Nigï¿½ria'),
+	('NIG','Nï¿½ger'),
 	('NOR','Noruega'),
 	('NRU','Nauru'),
-	('NZL','Nova Zelândia'),
-	('OMA','Omã'),
-	('PAK','Paquistão'),
-	('PAN','Panamá'),
+	('NZL','Nova Zelï¿½ndia'),
+	('OMA','Omï¿½'),
+	('PAK','Paquistï¿½o'),
+	('PAN','Panamï¿½'),
 	('PAR','Paraguai'),
 	('PER','Peru'),
 	('PHI','Filipinas'),
 	('PLE','Palestina'),
 	('PLW','Palau'),
-	('PNG','Papua-Nova Guiné'),
-	('POL','Polónia'),
+	('PNG','Papua-Nova Guinï¿½'),
+	('POL','Polï¿½nia'),
 	('POR','Portugal'),
 	('PRK','Coreia do Norte'),
 	('PUR','Porto Rico'),
 	('QAT','Catar'),
-	('ROU','Roménia'),
-	('RSA','África do Sul'),
-	('RUS','Rússia'),
+	('ROU','Romï¿½nia'),
+	('RSA','ï¿½frica do Sul'),
+	('RUS','Rï¿½ssia'),
 	('RWA','Ruanda'),
 	('SAM','Samoa'),
 	('SEN','Senegal'),
 	('SEY','Seicheles'),
 	('SGP','Singapura'),
-	('SKN','São Cristóvão e Névis'),
+	('SKN','Sï¿½o Cristï¿½vï¿½o e Nï¿½vis'),
 	('SLE','Serra Leoa'),
-	('SLO','Eslovênia'),
+	('SLO','Eslovï¿½nia'),
 	('SMR','San Marino'),
-	('SOL','Ilhas Salomão'),
-	('SOM','Somália'),
-	('SRB','Sérvia'),
+	('SOL','Ilhas Salomï¿½o'),
+	('SOM','Somï¿½lia'),
+	('SRB','Sï¿½rvia'),
 	('SRI','Sri Lanka'),
-	('SSD','Sudão do Sul'),
-	('STP','São Tomé e Príncipe'),
-	('SUD','Sudão'),
-	('SUI','Suíça'),
+	('SSD','Sudï¿½o do Sul'),
+	('STP','Sï¿½o Tomï¿½ e Prï¿½ncipe'),
+	('SUD','Sudï¿½o'),
+	('SUI','Suï¿½ï¿½a'),
 	('SUR','Suriname'),
-	('SVK','Eslováquia'),
-	('SWE','Suécia'),
-	('SWZ','Essuatíni'),
-	('SYR','Síria'),
-	('TAN','Tanzânia'),
+	('SVK','Eslovï¿½quia'),
+	('SWE','Suï¿½cia'),
+	('SWZ','Essuatï¿½ni'),
+	('SYR','Sï¿½ria'),
+	('TAN','Tanzï¿½nia'),
 	('TGA','Tonga'),
-	('THA','Tailândia'),
-	('TJK','Tajiquistão'),
-	('TKM','Turquemenistão'),
+	('THA','Tailï¿½ndia'),
+	('TJK','Tajiquistï¿½o'),
+	('TKM','Turquemenistï¿½o'),
 	('TLS','Timor-Leste'),
 	('TOG','Togo'),
-	('TPE','Taipé Chinesa (Taiwan)'),
+	('TPE','Taipï¿½ Chinesa (Taiwan)'),
 	('TTO','Trinidad e Tobago'),
-	('TUN','Tunísia'),
+	('TUN','Tunï¿½sia'),
 	('TUR','Turquia'),
 	('TUV','Tuvalu'),
-	('UAE','Emirados Árabes Unidos'),
+	('UAE','Emirados ï¿½rabes Unidos'),
 	('UGA','Uganda'),
-	('UKR','Ucrânia'),
+	('UKR','Ucrï¿½nia'),
 	('URU','Uruguai'),
 	('USA','Estados Unidos'),
-	('UZB','Uzbequistão'),
+	('UZB','Uzbequistï¿½o'),
 	('VAN','Vanuatu'),
 	('VEN','Venezuela'),
-	('VIE','Vietnã'),
-	('VIN','São Vicente e Granadinas'),
-	('YEM','Iêmen'),
-	('ZAM','Zâmbia'),
+	('VIE','Vietnï¿½'),
+	('VIN','Sï¿½o Vicente e Granadinas'),
+	('YEM','Iï¿½men'),
+	('ZAM','Zï¿½mbia'),
 	('ZIM','Zimbabwe'),
 	('MIX','Equipes internacionais')
 
@@ -287,7 +287,7 @@ INSERT INTO atleta VALUES
 SELECT	id,
 		nome,
 		CASE WHEN (tipo = 0) 
-			THEN 'Distância' 
+			THEN 'Distï¿½ncia' 
 			ELSE 'Tempo'
 			END AS tipo,
 		CASE WHEN (sexo = 0) 
@@ -322,13 +322,13 @@ BEGIN
 
 	IF @contagem > 5 AND @tipo = 0
 	BEGIN
-		RAISERROR('Limite máximo de saltos já foi realizado pelo atleta!', 16, 1)
+		RAISERROR('Limite mï¿½ximo de saltos jï¿½ foi realizado pelo atleta!', 16, 1)
 	END
 	ELSE 
 	BEGIN
 		IF @contagem > 0 AND @tipo = 1
 		BEGIN
-			RAISERROR('O atleta já realizou uma corrida nesta fase!', 16, 1)
+			RAISERROR('O atleta jï¿½ realizou uma corrida nesta fase!', 16, 1)
 		END
 		ELSE 
 		BEGIN
@@ -351,7 +351,7 @@ BEGIN
 
 	IF @fase = 1 AND @tipo = 0 AND @atleta NOT IN (SELECT atleta_id FROM dbo.f_melhores(0, @prova))
 	BEGIN
-		RAISERROR('O atleta não foi classificado para a fase final!', 16, 1)
+		RAISERROR('O atleta nï¿½o foi classificado para a fase final!', 16, 1)
 		ROLLBACK TRANSACTION
 	END
 	IF @provas_totais < 6 AND @tipo = 0 AND @fase = 1
@@ -367,7 +367,7 @@ BEGIN
 
 	IF @fase = 1 AND @tipo = 1 AND @atleta NOT IN (SELECT atleta_id FROM dbo.f_melhores(0, @prova))
 	BEGIN
-		RAISERROR('O atleta não foi classificado para a fase final!', 16, 1)
+		RAISERROR('O atleta nï¿½o foi classificado para a fase final!', 16, 1)
 		ROLLBACK TRANSACTION
 	END
 END
@@ -396,7 +396,7 @@ BEGIN
 END
 GO
 
--- Funções
+-- Funï¿½ï¿½es
 
 CREATE FUNCTION f_contar_baterias (@fase BIT, @atleta INT, @prova INT)
 RETURNS INT
@@ -449,17 +449,18 @@ GO
 
 -- DISCARD LATER 
 
-DELETE FROM score
 SELECT * FROM atleta 
 SELECT * FROM prova
 
-EXEC inserir_score 1, 200, 104, 4, 1
-EXEC inserir_score 0, 100, 101, 2, 1
-EXEC inserir_score 0, 100, 103, 3, 1
-EXEC inserir_score 0, 100, 101, 9, 1
-EXEC inserir_score 0, 120, 103, 2, 1
+EXEC inserir_score 1, 200, 102, 17, 0
+EXEC inserir_score 1, 200, 100, 17, 0
+EXEC inserir_score 0, 200, 100, 17, 0
+EXEC inserir_score 0, 200, 100, 17, 0
+EXEC inserir_score 0, 200, 100, 17, 0
 
 
-SELECT * FROM f_melhores(0, 1)
+SELECT * FROM f_melhores(0, 17)
+
+select * from score
 
 SELECT	* FROM	score

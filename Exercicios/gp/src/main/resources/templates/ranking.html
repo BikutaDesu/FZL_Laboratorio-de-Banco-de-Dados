@@ -1,0 +1,93 @@
+<html>
+<head th:replace="~{import/base :: head(${prova.nome})}">
+</head>
+<body>
+	<div class="container">
+		<div
+			th:replace="~{import/base :: jumbotron(${prova.nome}, 'Selecione uma fase para conferir o ranking.')}">
+		</div>
+		<div class="form-group row">
+			<label for="faseSelect" class="col-2 col-form-label">Fase da
+				prova</label>
+			<div class="col-8">
+				<select class="form-control" id="faseSelect" name="faseSelect">
+					<option>Inicial</option>
+					<option>Final</option>
+				</select>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-primary">Buscar</button>
+			</div>
+		</div>
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Prova</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Score</th>
+					<th scope="col">País</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ranking, status : ${rankings}">
+					<td th:text="${status.index + 1}"></td>
+					<td th:text="${ranking.prova}"></td>
+					<td th:text="${ranking.nomeAtleta}"></td>
+					<td th:text="${ranking.score}"></td>
+					<td th:text="${ranking.pais}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="app">
+			<ranking-prova th:attr="idprova=${prova.provaId.id}"></ranking-prova>
+		</div>
+	</div>
+	<script type="text/javascript">
+	const http = axios.create({
+		baseURL: 'http://127.0.0.1:8080/api/'
+	})
+	
+	Vue.component('ranking-prova', {
+		props: ['idprova'],
+		data: function(){
+			return {
+				rankingInicial: [],
+				rankingFinal: [],
+				vazio: false
+			}
+		},
+		template: `
+			<p v-if="vazio">Não tenho nada pra te mostrar amigo :c</p>
+		`,
+		methods: {
+			getRankings() {
+				http.get('ranking/'+this.idprova+'/'+false)
+				.then(function(response){
+					if (response.data.length === 0) {
+						console.log('aaaaaaa')
+						this.vazio = true
+					} else {
+						this.rankingInicial = response.data
+					}
+				})
+				
+				http.get('ranking/'+this.idprova+'/'+true)
+				.then(function(response){
+					this.rankingFinal = response.data
+				})	
+			}
+		},
+		mounted() {
+			this.getRankings()
+		}
+	})
+	
+	var app = new Vue({
+		el: '#app'
+	})
+	
+	
+	</script>
+</body>
+</html>
