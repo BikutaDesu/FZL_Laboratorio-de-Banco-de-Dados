@@ -26,8 +26,8 @@ id			INT IDENTITY(1,1),
 sexo		BIT NOT NULL, --0 = f, 1 = m
 nome		VARCHAR(60) NOT NULL,
 tipo		BIT NOT NULL, --0 = metros, 1 = HH:mm:ss:ddd
-record_m	VARCHAR(10),
-record_e	VARCHAR(10),
+record_m	VARCHAR(10) NOT NULL,
+record_e	VARCHAR(10) NOT NULL,
 ouro		INT,
 prata		INT,
 bronze		INT
@@ -47,6 +47,7 @@ FOREIGN KEY (prova, sexo) REFERENCES prova(id, sexo)
 
 -- Registros de Exemplo
 
+<<<<<<< HEAD
 INSERT INTO prova(sexo, nome, tipo) VALUES
 	(0, 'Lanï¿½amento de Dardo / Javelin Throw', 0),
 	(1, 'Salto em Distï¿½ncia / Long Jump', 0),
@@ -64,6 +65,25 @@ INSERT INTO prova(sexo, nome, tipo) VALUES
 	(1, '800m', 1),
 	(0, '200m', 1),
 	(1, '200m', 1)
+=======
+INSERT INTO prova(sexo, nome, tipo, record_m, record_e) VALUES
+	(0, 'Lançamento de Dardo / Javelin Throw', 0, '500', '400'),
+	(1, 'Salto em Distância / Long Jump', 0, '700', '200'),
+	(1, 'Salto com Vara / Pole Vault', 0, '958', '527'),
+	(1, '400m com barreiras / 400m hurdles', 1, '00023200', '00031000'),
+	(0, '100m', 1, '00045400', '00062800'),
+	(0, 'Arremesso de Peso / Shot Put', 0, '70', '40'),
+	(1, '100m', 1, '00002431', '00003422'),
+	(1, '3000m', 1, '00144700' ,'00192500'),
+	(1, 'Lançamento de Disco / Discus Throw', 0, '300', '200'),
+	(0, '3000m com obstáculos / 3000m steeplechase', 1, '00175100', '00234000'),
+	(0, 'Salto Triplo / Triple Jump', 0, '600', '200'),
+	(1, '400m', 1, '00004303', '00005354'),
+	(0, '800m', 1, '00014800', '00020100'),
+	(1, '800m', 1, '00014500', '00024800'),
+	(0, '200m', 1, '00003400', '00003700'),
+	(1, '200m', 1, '00003700', '00004300')
+>>>>>>> ebeb2afe0027ffc6158053cd581f3663d44d3688
 
 INSERT INTO pais VALUES
 	('AFG','Afeganistï¿½o'),
@@ -279,7 +299,42 @@ INSERT INTO atleta VALUES
 	('Adam Johanness', 1, 'USA'),
 	('Nikki Hamblin', 0, 'NZL'),
 	('June Esser', 1, 'NZL'),
-	('Victor Snows', 1, 'BRA')	
+	('Vitor Snows', 1, 'BRA'),
+	('Laurel Lance', 0, 'RUS'),	
+	('Oliver Queen', 1, 'CAN'),
+	('John Diggle', 1 , 'EGY'),
+	('Felicity Smoak', 0, 'BRA'),
+	('Curtis Holt', 1, 'POR'),
+	('Rene Ramirez', 1, 'PAN'),
+	('Dinah Drake', 0, 'FRA'),
+	('Roy Harper', 1, 'DOM'),
+	('Rory Reagan', 1, 'DEN'),
+	('Sara Lance', 0, 'POL'),
+	('Ray Palmer', 1, 'PNG'),
+	('Mick Rory', 1, 'PLE'),
+	('Nate Heywood', 1, 'PUR'),
+	('Ava Sharpe', 0, 'NAM'),
+	('Barry Allen', 1, 'MEX'),
+	('Caitlin Snow', 0, 'LBN'),
+	('Cisco Ramon', 1, 'KOR'),
+	('Cynthia Reynolds', 0, 'IRI'),
+	('Ralph Dibny', 1, 'JPN'),
+	('Iris West', 0, 'IRL'),
+	('Wally West', 1, 'CHN'),
+	('Kara Danvers', 0, 'AFG'),
+	('Alex Danvers', 0, 'EGY'),
+	('Winn Scott', 1, 'FRA'),
+	('Nia Nal', 0, 'VIE'),
+	('John Johns', 1, 'ZIM'),
+	('Querl Dox', 1, 'UAE'),
+	('Jimmy Olsen', 1, 'THA'),
+	('Nora Allen', 0, 'SRI'),
+	('Mia Smoak', 0 , 'BRA'),
+	('Wiliam Clayton', 1, 'NED'),
+	('Connor Hawke', 1, 'LUX'),
+	('Zoe Ramirez', 0, 'MAD'),
+	('Maurilio Moura', 1, 'BAH'),
+	('Peter Heinrich', 1, 'IRL')
 
 -- Queries
 
