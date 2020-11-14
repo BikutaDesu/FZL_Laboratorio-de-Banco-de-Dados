@@ -12,7 +12,11 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
+
+
+
 <div th:fragment="jumbotron(titulo, descricao)" class="jumbotron">
 	<h1 class="display-4" th:text="${titulo}"></h1>
 	<p class="lead" th:text=${descricao}></p>
+	<a th:if="${titulo} != 'Provas disponíveis!'" class="btn btn-primary btn-lg" th:href="@{/}" role="button">Voltar para provas</a>
 </div>

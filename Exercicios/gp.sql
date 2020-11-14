@@ -47,7 +47,6 @@ FOREIGN KEY (prova, sexo) REFERENCES prova(id, sexo)
 
 -- Registros de Exemplo
 
-<<<<<<< HEAD
 INSERT INTO prova(sexo, nome, tipo) VALUES
 	(0, 'Lanï¿½amento de Dardo / Javelin Throw', 0),
 	(1, 'Salto em Distï¿½ncia / Long Jump', 0),
@@ -65,25 +64,24 @@ INSERT INTO prova(sexo, nome, tipo) VALUES
 	(1, '800m', 1),
 	(0, '200m', 1),
 	(1, '200m', 1)
-=======
+
 INSERT INTO prova(sexo, nome, tipo, record_m, record_e) VALUES
-	(0, 'Lançamento de Dardo / Javelin Throw', 0, '500', '400'),
-	(1, 'Salto em Distância / Long Jump', 0, '700', '200'),
+	(0, 'Lanï¿½amento de Dardo / Javelin Throw', 0, '500', '400'),
+	(1, 'Salto em Distï¿½ncia / Long Jump', 0, '700', '200'),
 	(1, 'Salto com Vara / Pole Vault', 0, '958', '527'),
 	(1, '400m com barreiras / 400m hurdles', 1, '00023200', '00031000'),
 	(0, '100m', 1, '00045400', '00062800'),
 	(0, 'Arremesso de Peso / Shot Put', 0, '70', '40'),
 	(1, '100m', 1, '00002431', '00003422'),
 	(1, '3000m', 1, '00144700' ,'00192500'),
-	(1, 'Lançamento de Disco / Discus Throw', 0, '300', '200'),
-	(0, '3000m com obstáculos / 3000m steeplechase', 1, '00175100', '00234000'),
+	(1, 'Lanï¿½amento de Disco / Discus Throw', 0, '300', '200'),
+	(0, '3000m com obstï¿½culos / 3000m steeplechase', 1, '00175100', '00234000'),
 	(0, 'Salto Triplo / Triple Jump', 0, '600', '200'),
 	(1, '400m', 1, '00004303', '00005354'),
 	(0, '800m', 1, '00014800', '00020100'),
 	(1, '800m', 1, '00014500', '00024800'),
 	(0, '200m', 1, '00003400', '00003700'),
 	(1, '200m', 1, '00003700', '00004300')
->>>>>>> ebeb2afe0027ffc6158053cd581f3663d44d3688
 
 INSERT INTO pais VALUES
 	('AFG','Afeganistï¿½o'),
@@ -342,7 +340,7 @@ INSERT INTO atleta VALUES
 SELECT	id,
 		nome,
 		CASE WHEN (tipo = 0) 
-			THEN 'Distï¿½ncia' 
+			THEN 'DistÃ¢ncia'
 			ELSE 'Tempo'
 			END AS tipo,
 		CASE WHEN (sexo = 0) 
@@ -377,13 +375,13 @@ BEGIN
 
 	IF @contagem > 5 AND @tipo = 0
 	BEGIN
-		RAISERROR('Limite mï¿½ximo de saltos jï¿½ foi realizado pelo atleta!', 16, 1)
+		RAISERROR('Limite mÃ¡ximo de saltos jÃ¡ foi realizado pelo atleta!', 16, 1)
 	END
 	ELSE 
 	BEGIN
 		IF @contagem > 0 AND @tipo = 1
 		BEGIN
-			RAISERROR('O atleta jï¿½ realizou uma corrida nesta fase!', 16, 1)
+			RAISERROR('O atleta jÃ¡ realizou uma corrida nesta fase!', 16, 1)
 		END
 		ELSE 
 		BEGIN
@@ -406,7 +404,7 @@ BEGIN
 
 	IF @fase = 1 AND @tipo = 0 AND @atleta NOT IN (SELECT atleta_id FROM dbo.f_melhores(0, @prova))
 	BEGIN
-		RAISERROR('O atleta nï¿½o foi classificado para a fase final!', 16, 1)
+		RAISERROR('O atleta nÃ£o foi classificado para a fase final!', 16, 1)
 		ROLLBACK TRANSACTION
 	END
 	IF @provas_totais < 6 AND @tipo = 0 AND @fase = 1
@@ -422,7 +420,7 @@ BEGIN
 
 	IF @fase = 1 AND @tipo = 1 AND @atleta NOT IN (SELECT atleta_id FROM dbo.f_melhores(0, @prova))
 	BEGIN
-		RAISERROR('O atleta nï¿½o foi classificado para a fase final!', 16, 1)
+		RAISERROR('O atleta nÃ£o foi classificado para a fase final!', 16, 1)
 		ROLLBACK TRANSACTION
 	END
 END

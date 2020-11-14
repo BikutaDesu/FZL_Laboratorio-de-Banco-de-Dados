@@ -9,11 +9,13 @@
 		<h1 class="display-4">Provas de Corrida</h1>
 
 		<div class="mt-3 d-flex justify-content-around flex-wrap">
+			
 			<div th:each="prova : ${provas}" th:if="${prova.tipo} == true"
 				class="card mb-3" style="width: 18rem;">
 				<img th:if="${prova.provaId.sexo} == true"
 					src="https://media.zenfs.com/en/homerun/feed_manager_auto_publish_494/fc31cac78400bfdcdd2a963151e52809"
-					class="card-img-top"> <img th:if="${prova.provaId.sexo} == false"
+					class="card-img-top"> 
+				<img th:if="${prova.provaId.sexo} == false"
 					src="https:/static01.nyt.com/images/2019/05/07/sports/01semenyaloses/merlin_110935856_9b369b14-2ace-4dce-ab19-7512208b880d-superJumbo.jpg"
 					class="card-img-top">
 				<div class="card-body">
@@ -21,6 +23,7 @@
 					<a th:href="@{ranking/}+${prova.provaId.id}" class="btn btn-primary">Ver ranking</a>
 				</div>
 			</div>
+		
 		</div>
 
 		<h1 class="display-4">Provas de Arremesso</h1>
