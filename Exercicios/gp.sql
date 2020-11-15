@@ -49,7 +49,7 @@ FOREIGN KEY (prova, sexo) REFERENCES prova(id, sexo)
 
 
 -- Insert Procedures
-DROP PROCEDURE t_inserir_atleta
+DROP PROCEDURE t_inserir_score
 CREATE PROCEDURE inserir_score (@fase BIT, @score VARCHAR(10), @atleta INT, @prova INT, @sexo BIT)
 AS
 BEGIN
@@ -92,7 +92,7 @@ BEGIN
 END
 GO
 
-DROP TRIGGER t_inserir_atleta
+DROP TRIGGER t_inserir_score_before
 CREATE TRIGGER t_inserir_score_before ON score FOR INSERT
 AS
 BEGIN
@@ -129,7 +129,7 @@ BEGIN
 END
 GO
 
-DROP TRIGGER t_inserir_atleta
+DROP TRIGGER t_inserir_score_after
 CREATE TRIGGER t_inserir_score_after ON score AFTER INSERT
 AS
 BEGIN
@@ -847,7 +847,7 @@ FROM	prova
 
 EXEC popular_score 0
 
-SELECT	* FROM	score
-DELETE FROM score
+SELECT	* FROM atleta
+DELETE FROM 
 
 SELECT * FROM f_melhores(0, 1)
