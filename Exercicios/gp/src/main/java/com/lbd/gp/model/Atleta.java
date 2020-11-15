@@ -7,43 +7,44 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "atleta")
-public class Atleta implements Serializable{
+public class Atleta implements Serializable {
 
 	@Id
-	private Integer Id;
+	private Integer id;
 	private String nome;
 	private Boolean sexo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Pais coi;
-	
+	@JoinColumn(name = "coi")
+	private Pais pais;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "atleta", fetch = FetchType.LAZY)
 	private List<Score> scores;
-	
+
 	public Atleta() {
 
 	}
 
-	public Atleta(Integer id, String nome, Boolean sexo, Pais coi) {
+	public Atleta(Integer id, String nome, Boolean sexo, Pais pais) {
 		super();
-		Id = id;
+		this.id = id;
 		this.nome = nome;
 		this.sexo = sexo;
-		this.coi = coi;
+		this.pais = pais;
 	}
 
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -63,11 +64,11 @@ public class Atleta implements Serializable{
 	}
 
 	public Pais getCoi() {
-		return coi;
+		return pais;
 	}
 
-	public void setCoi(Pais coi) {
-		this.coi = coi;
+	public void setCoi(Pais pais) {
+		this.pais = pais;
 	}
 
 }

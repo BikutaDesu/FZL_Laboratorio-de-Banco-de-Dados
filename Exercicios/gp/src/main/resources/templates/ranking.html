@@ -1,0 +1,115 @@
+<html>
+<head th:replace="~{import/base :: head(${prova.nome})}">
+</head>
+<body>
+	<div class="container">
+		<div
+			th:replace="~{import/base :: jumbotron(${prova.nome}, 'Selecione uma fase para conferir o ranking.')}">
+		</div>
+		<div id="app">
+			<ranking-prova th:attr="idprova=${prova.provaId.id}">d
+			</ranking-prova>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript">
+	const http = axios.create({
+		baseURL: 'http://127.0.0.1:8080/api/'
+	})
+	
+	Vue.component('ranking-prova', {
+		props: ['idprova'],
+		data: function(){
+			return {
+				rankingInicial: [],
+				rankingFinal: [],
+				rankingAtual: [],
+				rankingIndex: 1,
+				total: 0
+			}
+		},
+		template: `
+			<div>
+				<div v-if="total == 0" class="alert alert-danger" role="alert">
+				Nenhum atleta realizou a fase inicial, portanto não é possível consultar o ranking.
+				</div>
+				<div v-else>
+					<div class="form-group row">
+						<label for="faseSelect" class="col-2 d-flex align-items-center justify-content-center">
+							<span>Fase da prova</span>
+						</label>
+						<div class="col-8">
+							<select @change="changeRanking($event)" class="form-control" id="faseSelect" name="faseSelect">
+								<option v-for="i in total" :value="i">{{i}} -
+									<p v-if="i === 1">Inicial</p>
+									<p v-else>Final</p>
+								</option>
+							</select>
+						</div>
+						<div class="col-2 d-flex">
+							<button @click="setRanking()" class="btn btn-primary flex-grow-1">Buscar</button>
+						</div>
+					</div>
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Prova</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Score</th>
+								<th scope="col">País</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(ranking, index) in rankingAtual">
+								<td>{{index + 1}}</td>
+								<td>{{ranking.prova}}</td>
+								<td>{{ranking.nomeAtleta}}</td>
+								<td>{{ranking.score}}</td>
+								<td>{{ranking.pais}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		`,
+		methods: {
+			getRankings() {
+				http.get('ranking/'+this.idprova+'/'+false)
+				.then(response => {
+					this.rankingInicial = response.data
+					this.rankingInicial.sort((a, b) => b.score - a.score)
+					this.total += (response.data.length === 0) ? 0 : 1
+				})
+				
+				http.get('ranking/'+this.idprova+'/'+true)
+				.then(response => {
+					this.rankingFinal = response.data
+					this.rankingFinal.sort((a, b) => b.score - a.score)
+					this.total += (response.data.length === 0) ? 0 : 1
+				})
+			},
+			setRanking() {
+				if (this.rankingIndex == 1) {
+					this.rankingAtual = this.rankingInicial
+					
+				}else if (this.rankingIndex == 2) {
+					this.rankingAtual = this.rankingFinal
+				}
+			},
+			changeRanking(event) {
+				this.rankingIndex = event.target.value
+			}
+		},
+		mounted() {
+			this.getRankings()
+		}
+	})
+	
+	var app = new Vue({
+		el: '#app'
+	})	
+	</script>
+</body>
+</html>

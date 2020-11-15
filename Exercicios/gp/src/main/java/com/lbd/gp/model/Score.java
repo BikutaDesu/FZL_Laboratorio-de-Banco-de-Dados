@@ -5,26 +5,33 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "score")
-public class Score implements Serializable{
-	
+public class Score implements Serializable {
+
 	@Id
 	private Integer id;
 	private Boolean fase;
 	private String score;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "atleta")
 	private Atleta atleta;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({
+		@JoinColumn(name = "prova"), 
+		@JoinColumn(name = "sexo")
+	})
 	private Prova prova;
-	
+
 	public Score() {
-		
+
 	}
 
 	public Score(Integer id, Boolean fase, String score, Atleta atleta, Prova prova) {
@@ -75,5 +82,5 @@ public class Score implements Serializable{
 	public void setProva(Prova prova) {
 		this.prova = prova;
 	}
-	
+
 }
