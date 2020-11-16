@@ -39,8 +39,6 @@ public class RankingDAO implements RankingRepository {
 
 			rankings.add(ranking);
 		}
-		c.close();
-
 		return rankings;
 	}
 

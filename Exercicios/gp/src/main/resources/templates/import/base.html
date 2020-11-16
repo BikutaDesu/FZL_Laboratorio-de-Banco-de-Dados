@@ -20,3 +20,14 @@
 	<p class="lead" th:text=${descricao}></p>
 	<a th:if="${titulo} != 'Provas disponíveis!'" class="btn btn-primary btn-lg" th:href="@{/}" role="button">Voltar para provas</a>
 </div>
+
+<div th:fragment="record(recordM, recordE)">
+	<div th:if="${prova.tipo} == true">
+		<h5 th:if="${recordM} != null" style="background-color: darkcyan; color: white" th:text="'Record Mundial: ' + ${#strings.substring(recordM,0,2)} + ':' + ${#strings.substring(recordM,2,4)} + ':' + ${#strings.substring(recordM,4,6)} + ':' + ${#strings.substring(recordM,6,8)}"></h5>
+		<h5 th:if="${recordE} != null" style="background-color: dodgerblue; color: white" th:text="'Record do Evento: ' + ${#strings.substring(recordE,0,2)} + ':' + ${#strings.substring(recordE,2,4)} + ':' + ${#strings.substring(recordE,4,6)} + ':' + ${#strings.substring(recordE,6,8)}"></h5>
+	</div>
+	<div th:if="${prova.tipo} == false">
+		<h5 th:if="${recordM} != null" style="background-color: darkcyan; color: white" th:text="'Record Mundial: ' + ${recordM} + 'm'"></h5>
+		<h5 th:if="${recordE} != null" style="background-color: dodgerblue; color: white" th:text="'Record do Evento: ' + ${recordE} + 'm'"></h5>
+	</div>
+</div>

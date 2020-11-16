@@ -4,29 +4,36 @@
 <body>
 	<div class="container">
 		<div
-			th:replace="~{import/base :: jumbotron(${prova.nome}, 'Selecione uma fase para conferir o ranking.')}">
+			th:replace="~{import/base :: jumbotron(${prova.nome}, 
+				'Selecione uma fase para conferir o ranking.'
+				)}">
 		</div>
-		<div id="app">
-			<ranking-prova th:attr="idprova=${prova.provaId.id}">d
+		<div th:replace="~{import/base :: record(${prova.recordM}, ${prova.recordE})}">
+		</div>
+		
+		<div id="app" class="mt-4">
+			<ranking-prova th:idprova="${prova.provaId.id}"
+				th:recordmun="${prova.recordM}" th:recordeve="${prova.recordE}" th:tipo="${prova.tipo}">
 			</ranking-prova>
 		</div>
 	</div>
-	
-	
+
+
 	<script type="text/javascript">
 	const http = axios.create({
 		baseURL: 'http://127.0.0.1:8080/api/'
 	})
 	
 	Vue.component('ranking-prova', {
-		props: ['idprova'],
+		props: ['idprova', 'tipo', 'recordeve', 'recordmun'],
 		data: function(){
 			return {
 				rankingInicial: [],
 				rankingFinal: [],
 				rankingAtual: [],
 				rankingIndex: 1,
-				total: 0
+				total: 0,
+				tipoProva: ''
 			}
 		},
 		template: `
@@ -62,11 +69,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(ranking, index) in rankingAtual">
+							<tr v-for="(ranking, index) in rankingAtual" :style="getStyle(ranking.score)">
 								<td>{{index + 1}}</td>
 								<td>{{ranking.prova}}</td>
 								<td>{{ranking.nomeAtleta}}</td>
-								<td>{{ranking.score}}</td>
+								<td>{{getScore(ranking.score)}}</td>
 								<td>{{ranking.pais}}</td>
 							</tr>
 						</tbody>
@@ -79,14 +86,22 @@
 				http.get('ranking/'+this.idprova+'/'+false)
 				.then(response => {
 					this.rankingInicial = response.data
-					this.rankingInicial.sort((a, b) => b.score - a.score)
-					this.total += (response.data.length === 0) ? 0 : 1
+					if (this.tipoProva == 'C') {
+						this.rankingInicial.sort((a, b) => b.score + a.score)
+					}else {
+						this.rankingInicial.sort((a, b) => b.score - a.score)
+					}
+ 					this.total += (response.data.length === 0) ? 0 : 1
 				})
 				
 				http.get('ranking/'+this.idprova+'/'+true)
 				.then(response => {
 					this.rankingFinal = response.data
-					this.rankingFinal.sort((a, b) => b.score - a.score)
+					if (this.tipoProva == 'C') {
+						this.rankingInicial.sort((a, b) => b.score + a.score)
+					}else {
+						this.rankingInicial.sort((a, b) => b.score - a.score)
+					}
 					this.total += (response.data.length === 0) ? 0 : 1
 				})
 			},
@@ -100,10 +115,46 @@
 			},
 			changeRanking(event) {
 				this.rankingIndex = event.target.value
+			},
+			getStyle(score) {
+				if (this.tipoProva == 'C') {
+					if (score < this.recordmun) {
+						return {	
+							'background-color' : 'darkcyan'
+						}	
+					}else if (score < this.recordeve) {
+						return {	
+							'background-color' : 'dodgerblue'
+						}
+					}	
+				}else {
+					if (score > this.recordmun) {
+						return {	
+							'background-color' : 'darkcyan'
+						}	
+					}else if (score > this.recordeve) {
+						return {	
+							'background-color' : 'dodgerblue'
+						}
+					}
+				}
+				
+			},
+			getScore(score) {
+				console.log(this.tipoProva)
+				if (this.tipoProva === 'C') {
+					newScore = score.substring(0,2) + ':' + score.substring(2,4) + ':' + score.substring(4,6) + ':' + score.substring(6,8) 
+					return newScore
+				} else if (this.tipoProva === 'D'){
+					return score + 'm'
+				}
 			}
 		},
 		mounted() {
 			this.getRankings()
+		},
+		created(){
+			this.tipoProva = this.tipo == 'true' ? 'C' : 'D'
 		}
 	})
 	

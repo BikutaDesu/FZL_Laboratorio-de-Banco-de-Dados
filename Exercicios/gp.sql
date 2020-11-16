@@ -5,8 +5,6 @@ CREATE DATABASE gp
 
 USE gp
 
-
-
 -- Tables
 
 CREATE TABLE pais(
@@ -49,7 +47,7 @@ FOREIGN KEY (prova, sexo) REFERENCES prova(id, sexo)
 
 
 -- Insert Procedures
-DROP PROCEDURE t_inserir_score
+--DROP PROCEDURE t_inserir_score
 CREATE PROCEDURE inserir_score (@fase BIT, @score VARCHAR(10), @atleta INT, @prova INT, @sexo BIT)
 AS
 BEGIN
@@ -75,10 +73,8 @@ BEGIN
 END
 GO
 
-
-
 -- Insert Triggers
-DROP TRIGGER t_inserir_atleta
+--DROP TRIGGER t_inserir_atleta
 CREATE TRIGGER t_inserir_atleta ON atleta FOR INSERT
 AS
 BEGIN
@@ -92,7 +88,7 @@ BEGIN
 END
 GO
 
-DROP TRIGGER t_inserir_score_before
+--DROP TRIGGER t_inserir_score_before
 CREATE TRIGGER t_inserir_score_before ON score FOR INSERT
 AS
 BEGIN
@@ -129,7 +125,7 @@ BEGIN
 END
 GO
 
-DROP TRIGGER t_inserir_score_after
+--DROP TRIGGER t_inserir_score_after
 CREATE TRIGGER t_inserir_score_after ON score AFTER INSERT
 AS
 BEGIN
@@ -153,10 +149,8 @@ BEGIN
 END
 GO
 
-
-
 -- Functions
-DROP FUNCTION f_contar_baterias
+--DROP FUNCTION f_contar_baterias
 CREATE FUNCTION f_contar_baterias (@fase BIT, @atleta INT, @prova INT)
 RETURNS INT
 AS
@@ -165,7 +159,7 @@ BEGIN
 END
 GO
 
-DROP FUNCTION f_melhores
+--DROP FUNCTION f_melhores
 CREATE FUNCTION f_melhores (@fase BIT, @prova INT)
 RETURNS @melhores TABLE (
 prova VARCHAR(60),
@@ -207,11 +201,9 @@ BEGIN
 END
 GO
 
-
-
 -- Registries/populating
 
-DELETE FROM prova
+--DELETE FROM prova
 INSERT INTO prova(sexo, nome, tipo, record_m, record_e) VALUES
 	(0, 'Lançamento de Dardo / Javelin Throw', 0, '500', '400'),
 	(1, 'Salto em Distância / Long Jump', 0, '700', '200'),
@@ -231,7 +223,7 @@ INSERT INTO prova(sexo, nome, tipo, record_m, record_e) VALUES
 	(1, '200m', 1, '00003700', '00004300')
 GO
 
-DELETE FROM pais
+--DELETE FROM pais
 INSERT INTO pais VALUES
 	('AFG','Afeganistão'),
 	('ALB','Albânia'),
@@ -442,8 +434,8 @@ INSERT INTO pais VALUES
 	('MIX','Equipes internacionais')
 GO
 
-DELETE FROM atleta
-INSERT INTO atleta VALUES
+--DELETE FROM atleta
+INSERT INTO dbo.atleta(nome, sexo, coi) VALUES
 	('Fernanda Silveira', 0, 'BRA'),
 	('Adam Johanness', 1, 'USA'),
 	('Nikki Hamblin', 0, 'NZL'),
@@ -486,7 +478,7 @@ INSERT INTO atleta VALUES
 	('Peter Heinrich', 1, 'IRL')
 GO
 
-DROP PROCEDURE popular_score
+--DROP PROCEDURE popular_score
 CREATE PROCEDURE popular_score (@fase INT)
 AS
 BEGIN
@@ -821,7 +813,7 @@ BEGIN
 END
 GO
 
-DROP PROCEDURE popular_score_final
+--DROP PROCEDURE popular_score_final
 CREATE PROCEDURE popular_score_final (@fase INT)
 AS
 BEGIN
@@ -845,9 +837,7 @@ SELECT	id,
 			END AS sexo
 FROM	prova
 
-EXEC popular_score 0
+EXEC popular_score 1
 
-SELECT	* FROM atleta
-DELETE FROM 
-
-SELECT * FROM f_melhores(0, 1)
+SELECT	* FROM prova
+DELETE FROM
