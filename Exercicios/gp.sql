@@ -38,7 +38,7 @@ PRIMARY KEY (id, sexo)
 CREATE TABLE score(
 id		INT IDENTITY(1000,1) PRIMARY KEY,
 fase	BIT NOT NULL, --0 = inicial, 1 = final
-score	VARCHAR(10),
+score	VARCHAR(8),
 atleta	INT NOT NULL,
 prova	INT NOT NULL,
 sexo	BIT NOT NULL, --0 = f, 1 = m
@@ -59,7 +59,7 @@ BEGIN
 
 	IF @contagem > 5 AND @tipo = 0
 	BEGIN
-		RAISERROR('Limite máximo de saltos já foi realizado pelo atleta!', 16, 1)
+		RAISERROR('Limite máximo de partidas já foi realizado pelo atleta!', 16, 1)
 	END
 	ELSE 
 	BEGIN
@@ -78,7 +78,8 @@ GO
 
 
 -- Insert Triggers
-DROP TRIGGER t_inserir_atleta
+
+/**DROP TRIGGER t_inserir_atleta
 CREATE TRIGGER t_inserir_atleta ON atleta FOR INSERT
 AS
 BEGIN
@@ -90,7 +91,7 @@ BEGIN
 		ROLLBACK TRANSACTION
 	END
 END
-GO
+GO**/
 
 DROP TRIGGER t_inserir_score_before
 CREATE TRIGGER t_inserir_score_before ON score FOR INSERT
@@ -490,334 +491,192 @@ DROP PROCEDURE popular_score
 CREATE PROCEDURE popular_score (@fase INT)
 AS
 BEGIN
-	 EXEC inserir_score @fase, '749', 107, 1, 0
-	 EXEC inserir_score @fase, '00043442', 107, 5, 0
-	 EXEC inserir_score @fase, '490', 107, 6, 0
-	 EXEC inserir_score @fase, '00412142', 107, 10, 0
-	 EXEC inserir_score @fase, '33', 107, 11, 0
-	 EXEC inserir_score @fase, '00112134', 107, 13, 0
-	 EXEC inserir_score @fase, '00221203', 107, 15, 0
-	 EXEC inserir_score @fase, '121', 108, 2, 1
-	 EXEC inserir_score @fase, '603', 108, 3, 1
-	 EXEC inserir_score @fase, '00202134', 108, 4, 1
-	 EXEC inserir_score @fase, '00442130', 108, 7, 1
-	 EXEC inserir_score @fase, '00134312', 108, 8, 1
-	 EXEC inserir_score @fase, '139', 108, 9, 1
-	 EXEC inserir_score @fase, '00402411', 108, 12, 1
-	 EXEC inserir_score @fase, '00342103', 108, 14, 1
-	 EXEC inserir_score @fase, '00304020', 108, 16, 1
-	 EXEC inserir_score @fase, '481', 109, 1, 0
-	 EXEC inserir_score @fase, '00002110', 109, 5, 0
-	 EXEC inserir_score @fase, '493', 109, 6, 0
-	 EXEC inserir_score @fase, '00102342', 109, 10, 0
-	 EXEC inserir_score @fase, '480', 109, 11, 0
-	 EXEC inserir_score @fase, '00000404', 109, 13, 0
-	 EXEC inserir_score @fase, '00324022', 109, 15, 0
-	 EXEC inserir_score @fase, '152', 110, 2, 1
-	 EXEC inserir_score @fase, '128', 110, 3, 1
-	 EXEC inserir_score @fase, '00030214', 110, 4, 1
-	 EXEC inserir_score @fase, '00422042', 110, 7, 1
-	 EXEC inserir_score @fase, '00304313', 110, 8, 1
-	 EXEC inserir_score @fase, '186', 110, 9, 1
-	 EXEC inserir_score @fase, '00321413', 110, 12, 1
-	 EXEC inserir_score @fase, '00424144', 110, 14, 1
-	 EXEC inserir_score @fase, '00424004', 110, 16, 1
-	 EXEC inserir_score @fase, '883', 111, 2, 1
-	 EXEC inserir_score @fase, '358', 111, 3, 1
-	 EXEC inserir_score @fase, '00231341', 111, 4, 1
-	 EXEC inserir_score @fase, '00432141', 111, 7, 1
-	 EXEC inserir_score @fase, '00210213', 111, 8, 1
-	 EXEC inserir_score @fase, '581', 111, 9, 1
-	 EXEC inserir_score @fase, '00241032', 111, 12, 1
-	 EXEC inserir_score @fase, '00331442', 111, 14, 1
-	 EXEC inserir_score @fase, '00402132', 111, 16, 1
-	 EXEC inserir_score @fase, '691', 112, 1, 0
-	 EXEC inserir_score @fase, '00343230', 112, 5, 0
-	 EXEC inserir_score @fase, '762', 112, 6, 0
-	 EXEC inserir_score @fase, '00202422', 112, 10, 0
-	 EXEC inserir_score @fase, '201', 112, 11, 0
-	 EXEC inserir_score @fase, '00330004', 112, 13, 0
-	 EXEC inserir_score @fase, '00300102', 112, 15, 0
-	 EXEC inserir_score @fase, '820', 113, 2, 1
-	 EXEC inserir_score @fase, '991', 113, 3, 1
-	 EXEC inserir_score @fase, '00032444', 113, 4, 1
-	 EXEC inserir_score @fase, '00310224', 113, 7, 1
-	 EXEC inserir_score @fase, '00002134', 113, 8, 1
-	 EXEC inserir_score @fase, '591', 113, 9, 1
-	 EXEC inserir_score @fase, '00031324', 113, 12, 1
-	 EXEC inserir_score @fase, '00310121', 113, 14, 1
-	 EXEC inserir_score @fase, '00212302', 113, 16, 1
-	 EXEC inserir_score @fase, '429', 114, 2, 1
-	 EXEC inserir_score @fase, '382', 114, 3, 1
-	 EXEC inserir_score @fase, '00223223', 114, 4, 1
-	 EXEC inserir_score @fase, '00234310', 114, 7, 1
-	 EXEC inserir_score @fase, '00141342', 114, 8, 1
-	 EXEC inserir_score @fase, '457', 114, 9, 1
-	 EXEC inserir_score @fase, '00200134', 114, 12, 1
-	 EXEC inserir_score @fase, '00431041', 114, 14, 1
-	 EXEC inserir_score @fase, '00033202', 114, 16, 1
-	 EXEC inserir_score @fase, '408', 115, 1, 0
-	 EXEC inserir_score @fase, '00432342', 115, 5, 0
-	 EXEC inserir_score @fase, '967', 115, 6, 0
-	 EXEC inserir_score @fase, '00014114', 115, 10, 0
-	 EXEC inserir_score @fase, '116', 115, 11, 0
-	 EXEC inserir_score @fase, '00233004', 115, 13, 0
-	 EXEC inserir_score @fase, '00331434', 115, 15, 0
-	 EXEC inserir_score @fase, '108', 116, 2, 1
-	 EXEC inserir_score @fase, '598', 116, 3, 1
-	 EXEC inserir_score @fase, '00402444', 116, 4, 1
-	 EXEC inserir_score @fase, '00144342', 116, 7, 1
-	 EXEC inserir_score @fase, '00201422', 116, 8, 1
-	 EXEC inserir_score @fase, '656', 116, 9, 1
-	 EXEC inserir_score @fase, '00230202', 116, 12, 1
-	 EXEC inserir_score @fase, '00210432', 116, 14, 1
-	 EXEC inserir_score @fase, '00314124', 116, 16, 1
-	 EXEC inserir_score @fase, '654', 117, 2, 1
-	 EXEC inserir_score @fase, '631', 117, 3, 1
-	 EXEC inserir_score @fase, '00431322', 117, 4, 1
-	 EXEC inserir_score @fase, '00413234', 117, 7, 1
-	 EXEC inserir_score @fase, '00410430', 117, 8, 1
-	 EXEC inserir_score @fase, '736', 117, 9, 1
-	 EXEC inserir_score @fase, '00112434', 117, 12, 1
-	 EXEC inserir_score @fase, '00322432', 117, 14, 1
-	 EXEC inserir_score @fase, '00223311', 117, 16, 1
-	 EXEC inserir_score @fase, '195', 118, 1, 0
-	 EXEC inserir_score @fase, '00121301', 118, 5, 0
-	 EXEC inserir_score @fase, '627', 118, 6, 0
-	 EXEC inserir_score @fase, '00132022', 118, 10, 0
-	 EXEC inserir_score @fase, '600', 118, 11, 0
-	 EXEC inserir_score @fase, '00141123', 118, 13, 0
-	 EXEC inserir_score @fase, '00104002', 118, 15, 0
-	 EXEC inserir_score @fase, '538', 119, 2, 1
-	 EXEC inserir_score @fase, '581', 119, 3, 1
-	 EXEC inserir_score @fase, '00213434', 119, 4, 1
-	 EXEC inserir_score @fase, '00424340', 119, 7, 1
-	 EXEC inserir_score @fase, '00421302', 119, 8, 1
-	 EXEC inserir_score @fase, '861', 119, 9, 1
-	 EXEC inserir_score @fase, '00421142', 119, 12, 1
-	 EXEC inserir_score @fase, '00331102', 119, 14, 1
-	 EXEC inserir_score @fase, '00111140', 119, 16, 1
-	 EXEC inserir_score @fase, '45', 120, 2, 1
-	 EXEC inserir_score @fase, '122', 120, 3, 1
-	 EXEC inserir_score @fase, '00314301', 120, 4, 1
-	 EXEC inserir_score @fase, '00204100', 120, 7, 1
-	 EXEC inserir_score @fase, '00131004', 120, 8, 1
-	 EXEC inserir_score @fase, '232', 120, 9, 1
-	 EXEC inserir_score @fase, '00114342', 120, 12, 1
-	 EXEC inserir_score @fase, '00104030', 120, 14, 1
-	 EXEC inserir_score @fase, '00121223', 120, 16, 1
-	 EXEC inserir_score @fase, '831', 121, 1, 0
-	 EXEC inserir_score @fase, '00142403', 121, 5, 0
-	 EXEC inserir_score @fase, '528', 121, 6, 0
-	 EXEC inserir_score @fase, '00212424', 121, 10, 0
-	 EXEC inserir_score @fase, '373', 121, 11, 0
-	 EXEC inserir_score @fase, '00032210', 121, 13, 0
-	 EXEC inserir_score @fase, '00430432', 121, 15, 0
-	 EXEC inserir_score @fase, '753', 122, 2, 1
-	 EXEC inserir_score @fase, '840', 122, 3, 1
-	 EXEC inserir_score @fase, '00003340', 122, 4, 1
-	 EXEC inserir_score @fase, '00434330', 122, 7, 1
-	 EXEC inserir_score @fase, '00314302', 122, 8, 1
-	 EXEC inserir_score @fase, '422', 122, 9, 1
-	 EXEC inserir_score @fase, '00403411', 122, 12, 1
-	 EXEC inserir_score @fase, '00043111', 122, 14, 1
-	 EXEC inserir_score @fase, '00102301', 122, 16, 1
-	 EXEC inserir_score @fase, '471', 123, 2, 1
-	 EXEC inserir_score @fase, '540', 123, 3, 1
-	 EXEC inserir_score @fase, '00001132', 123, 4, 1
-	 EXEC inserir_score @fase, '00142023', 123, 7, 1
-	 EXEC inserir_score @fase, '00244402', 123, 8, 1
-	 EXEC inserir_score @fase, '16', 123, 9, 1
-	 EXEC inserir_score @fase, '00101400', 123, 12, 1
-	 EXEC inserir_score @fase, '00404412', 123, 14, 1
-	 EXEC inserir_score @fase, '00101141', 123, 16, 1
-	 EXEC inserir_score @fase, '344', 124, 2, 1
-	 EXEC inserir_score @fase, '922', 124, 3, 1
-	 EXEC inserir_score @fase, '00104212', 124, 4, 1
-	 EXEC inserir_score @fase, '00000134', 124, 7, 1
-	 EXEC inserir_score @fase, '00122414', 124, 8, 1
-	 EXEC inserir_score @fase, '674', 124, 9, 1
-	 EXEC inserir_score @fase, '00434213', 124, 12, 1
-	 EXEC inserir_score @fase, '00042400', 124, 14, 1
-	 EXEC inserir_score @fase, '00020141', 124, 16, 1
-	 EXEC inserir_score @fase, '527', 125, 1, 0
-	 EXEC inserir_score @fase, '00414411', 125, 5, 0
-	 EXEC inserir_score @fase, '779', 125, 6, 0
-	 EXEC inserir_score @fase, '00340120', 125, 10, 0
-	 EXEC inserir_score @fase, '998', 125, 11, 0
-	 EXEC inserir_score @fase, '00403340', 125, 13, 0
-	 EXEC inserir_score @fase, '00142334', 125, 15, 0
-	 EXEC inserir_score @fase, '205', 126, 2, 1
-	 EXEC inserir_score @fase, '901', 126, 3, 1
-	 EXEC inserir_score @fase, '00021440', 126, 4, 1
-	 EXEC inserir_score @fase, '00201241', 126, 7, 1
-	 EXEC inserir_score @fase, '00243320', 126, 8, 1
-	 EXEC inserir_score @fase, '729', 126, 9, 1
-	 EXEC inserir_score @fase, '00014320', 126, 12, 1
-	 EXEC inserir_score @fase, '00321034', 126, 14, 1
-	 EXEC inserir_score @fase, '00104123', 126, 16, 1
-	 EXEC inserir_score @fase, '544', 127, 1, 0
-	 EXEC inserir_score @fase, '00002040', 127, 5, 0
-	 EXEC inserir_score @fase, '817', 127, 6, 0
-	 EXEC inserir_score @fase, '00203012', 127, 10, 0
-	 EXEC inserir_score @fase, '582', 127, 11, 0
-	 EXEC inserir_score @fase, '00204341', 127, 13, 0
-	 EXEC inserir_score @fase, '00143013', 127, 15, 0
-	 EXEC inserir_score @fase, '484', 128, 2, 1
-	 EXEC inserir_score @fase, '850', 128, 3, 1
-	 EXEC inserir_score @fase, '00410214', 128, 4, 1
-	 EXEC inserir_score @fase, '00142331', 128, 7, 1
-	 EXEC inserir_score @fase, '00222044', 128, 8, 1
-	 EXEC inserir_score @fase, '326', 128, 9, 1
-	 EXEC inserir_score @fase, '00123224', 128, 12, 1
-	 EXEC inserir_score @fase, '00013341', 128, 14, 1
-	 EXEC inserir_score @fase, '00211033', 128, 16, 1
-	 EXEC inserir_score @fase, '564', 129, 1, 0
-	 EXEC inserir_score @fase, '00323034', 129, 5, 0
-	 EXEC inserir_score @fase, '66', 129, 6, 0
-	 EXEC inserir_score @fase, '00311140', 129, 10, 0
-	 EXEC inserir_score @fase, '458', 129, 11, 0
-	 EXEC inserir_score @fase, '00033120', 129, 13, 0
-	 EXEC inserir_score @fase, '00034441', 129, 15, 0
-	 EXEC inserir_score @fase, '308', 130, 2, 1
-	 EXEC inserir_score @fase, '827', 130, 3, 1
-	 EXEC inserir_score @fase, '00041112', 130, 4, 1
-	 EXEC inserir_score @fase, '00113010', 130, 7, 1
-	 EXEC inserir_score @fase, '00403211', 130, 8, 1
-	 EXEC inserir_score @fase, '265', 130, 9, 1
-	 EXEC inserir_score @fase, '00320432', 130, 12, 1
-	 EXEC inserir_score @fase, '00434434', 130, 14, 1
-	 EXEC inserir_score @fase, '00311012', 130, 16, 1
-	 EXEC inserir_score @fase, '171', 131, 1, 0
-	 EXEC inserir_score @fase, '00020113', 131, 5, 0
-	 EXEC inserir_score @fase, '435', 131, 6, 0
-	 EXEC inserir_score @fase, '00130411', 131, 10, 0
-	 EXEC inserir_score @fase, '841', 131, 11, 0
-	 EXEC inserir_score @fase, '00132101', 131, 13, 0
-	 EXEC inserir_score @fase, '00103324', 131, 15, 0
-	 EXEC inserir_score @fase, '451', 132, 2, 1
-	 EXEC inserir_score @fase, '511', 132, 3, 1
-	 EXEC inserir_score @fase, '00342314', 132, 4, 1
-	 EXEC inserir_score @fase, '00001202', 132, 7, 1
-	 EXEC inserir_score @fase, '00012231', 132, 8, 1
-	 EXEC inserir_score @fase, '848', 132, 9, 1
-	 EXEC inserir_score @fase, '00423211', 132, 12, 1
-	 EXEC inserir_score @fase, '00222222', 132, 14, 1
-	 EXEC inserir_score @fase, '00433010', 132, 16, 1
-	 EXEC inserir_score @fase, '742', 133, 1, 0
-	 EXEC inserir_score @fase, '00141321', 133, 5, 0
-	 EXEC inserir_score @fase, '711', 133, 6, 0
-	 EXEC inserir_score @fase, '00111020', 133, 10, 0
-	 EXEC inserir_score @fase, '486', 133, 11, 0
-	 EXEC inserir_score @fase, '00314313', 133, 13, 0
-	 EXEC inserir_score @fase, '00023230', 133, 15, 0
-	 EXEC inserir_score @fase, '909', 134, 1, 0
-	 EXEC inserir_score @fase, '00122344', 134, 5, 0
-	 EXEC inserir_score @fase, '543', 134, 6, 0
-	 EXEC inserir_score @fase, '00240221', 134, 10, 0
-	 EXEC inserir_score @fase, '285', 134, 11, 0
-	 EXEC inserir_score @fase, '00304321', 134, 13, 0
-	 EXEC inserir_score @fase, '00420312', 134, 15, 0
-	 EXEC inserir_score @fase, '108', 135, 2, 1
-	 EXEC inserir_score @fase, '419', 135, 3, 1
-	 EXEC inserir_score @fase, '00443304', 135, 4, 1
-	 EXEC inserir_score @fase, '00140002', 135, 7, 1
-	 EXEC inserir_score @fase, '00424204', 135, 8, 1
-	 EXEC inserir_score @fase, '42', 135, 9, 1
-	 EXEC inserir_score @fase, '00322344', 135, 12, 1
-	 EXEC inserir_score @fase, '00024003', 135, 14, 1
-	 EXEC inserir_score @fase, '00314030', 135, 16, 1
-	 EXEC inserir_score @fase, '240', 136, 1, 0
-	 EXEC inserir_score @fase, '00344034', 136, 5, 0
-	 EXEC inserir_score @fase, '504', 136, 6, 0
-	 EXEC inserir_score @fase, '00103342', 136, 10, 0
-	 EXEC inserir_score @fase, '21', 136, 11, 0
-	 EXEC inserir_score @fase, '00013331', 136, 13, 0
-	 EXEC inserir_score @fase, '00144432', 136, 15, 0
-	 EXEC inserir_score @fase, '923', 137, 2, 1
-	 EXEC inserir_score @fase, '609', 137, 3, 1
-	 EXEC inserir_score @fase, '00014312', 137, 4, 1
-	 EXEC inserir_score @fase, '00133241', 137, 7, 1
-	 EXEC inserir_score @fase, '00241242', 137, 8, 1
-	 EXEC inserir_score @fase, '49', 137, 9, 1
-	 EXEC inserir_score @fase, '00134031', 137, 12, 1
-	 EXEC inserir_score @fase, '00321244', 137, 14, 1
-	 EXEC inserir_score @fase, '00242000', 137, 16, 1
-	 EXEC inserir_score @fase, '162', 138, 2, 1
-	 EXEC inserir_score @fase, '512', 138, 3, 1
-	 EXEC inserir_score @fase, '00423222', 138, 4, 1
-	 EXEC inserir_score @fase, '00130331', 138, 7, 1
-	 EXEC inserir_score @fase, '00433241', 138, 8, 1
-	 EXEC inserir_score @fase, '682', 138, 9, 1
-	 EXEC inserir_score @fase, '00422210', 138, 12, 1
-	 EXEC inserir_score @fase, '00430234', 138, 14, 1
-	 EXEC inserir_score @fase, '00140331', 138, 16, 1
-	 EXEC inserir_score @fase, '525', 139, 2, 1
-	 EXEC inserir_score @fase, '433', 139, 3, 1
-	 EXEC inserir_score @fase, '00211234', 139, 4, 1
-	 EXEC inserir_score @fase, '00442322', 139, 7, 1
-	 EXEC inserir_score @fase, '00221002', 139, 8, 1
-	 EXEC inserir_score @fase, '77', 139, 9, 1
-	 EXEC inserir_score @fase, '00031303', 139, 12, 1
-	 EXEC inserir_score @fase, '00020021', 139, 14, 1
-	 EXEC inserir_score @fase, '00033210', 139, 16, 1
-	 EXEC inserir_score @fase, '595', 140, 1, 0
-	 EXEC inserir_score @fase, '00020012', 140, 5, 0
-	 EXEC inserir_score @fase, '803', 140, 6, 0
-	 EXEC inserir_score @fase, '00434024', 140, 10, 0
-	 EXEC inserir_score @fase, '133', 140, 11, 0
-	 EXEC inserir_score @fase, '00202422', 140, 13, 0
-	 EXEC inserir_score @fase, '00411333', 140, 15, 0
-	 EXEC inserir_score @fase, '471', 141, 1, 0
-	 EXEC inserir_score @fase, '00241302', 141, 5, 0
-	 EXEC inserir_score @fase, '98', 141, 6, 0
-	 EXEC inserir_score @fase, '00410324', 141, 10, 0
-	 EXEC inserir_score @fase, '337', 141, 11, 0
-	 EXEC inserir_score @fase, '00331004', 141, 13, 0
-	 EXEC inserir_score @fase, '00322210', 141, 15, 0
-	 EXEC inserir_score @fase, '493', 142, 2, 1
-	 EXEC inserir_score @fase, '454', 142, 3, 1
-	 EXEC inserir_score @fase, '00020130', 142, 4, 1
-	 EXEC inserir_score @fase, '00102300', 142, 7, 1
-	 EXEC inserir_score @fase, '00240301', 142, 8, 1
-	 EXEC inserir_score @fase, '525', 142, 9, 1
-	 EXEC inserir_score @fase, '00123010', 142, 12, 1
-	 EXEC inserir_score @fase, '00000420', 142, 14, 1
-	 EXEC inserir_score @fase, '00330321', 142, 16, 1
-	 EXEC inserir_score @fase, '976', 143, 2, 1
-	 EXEC inserir_score @fase, '582', 143, 3, 1
-	 EXEC inserir_score @fase, '00134014', 143, 4, 1
-	 EXEC inserir_score @fase, '00410132', 143, 7, 1
-	 EXEC inserir_score @fase, '00401021', 143, 8, 1
-	 EXEC inserir_score @fase, '361', 143, 9, 1
-	 EXEC inserir_score @fase, '00320114', 143, 12, 1
-	 EXEC inserir_score @fase, '00432013', 143, 14, 1
-	 EXEC inserir_score @fase, '00022114', 143, 16, 1
-	 EXEC inserir_score @fase, '190', 144, 1, 0
-	 EXEC inserir_score @fase, '00021344', 144, 5, 0
-	 EXEC inserir_score @fase, '553', 144, 6, 0
-	 EXEC inserir_score @fase, '00302134', 144, 10, 0
-	 EXEC inserir_score @fase, '741', 144, 11, 0
-	 EXEC inserir_score @fase, '00430444', 144, 13, 0
-	 EXEC inserir_score @fase, '00104131', 144, 15, 0
-	 EXEC inserir_score @fase, '945', 145, 2, 1
-	 EXEC inserir_score @fase, '605', 145, 3, 1
-	 EXEC inserir_score @fase, '00133100', 145, 4, 1
-	 EXEC inserir_score @fase, '00331341', 145, 7, 1
-	 EXEC inserir_score @fase, '00303243', 145, 8, 1
-	 EXEC inserir_score @fase, '926', 145, 9, 1
-	 EXEC inserir_score @fase, '00300332', 145, 12, 1
-	 EXEC inserir_score @fase, '00123042', 145, 14, 1
-	 EXEC inserir_score @fase, '00231313', 145, 16, 1
-	 EXEC inserir_score @fase, '41', 146, 2, 1
-	 EXEC inserir_score @fase, '299', 146, 3, 1
-	 EXEC inserir_score @fase, '00120041', 146, 4, 1
-	 EXEC inserir_score @fase, '00001000', 146, 7, 1
-	 EXEC inserir_score @fase, '00314414', 146, 8, 1
-	 EXEC inserir_score @fase, '474', 146, 9, 1
-	 EXEC inserir_score @fase, '00401403', 146, 12, 1
-	 EXEC inserir_score @fase, '00314234', 146, 14, 1
-	 EXEC inserir_score @fase, '00013434', 146, 16, 1
+	 EXEC inserir_score @fase, '697', 100, 1, 0
+	 EXEC inserir_score @fase, '00433242', 100, 5, 0
+	 EXEC inserir_score @fase, '772', 100, 6, 0
+	 EXEC inserir_score @fase, '00432100', 100, 10, 0
+	 EXEC inserir_score @fase, '717', 100, 11, 0
+	 EXEC inserir_score @fase, '203', 101, 2, 1
+	 EXEC inserir_score @fase, '763', 101, 3, 1
+	 EXEC inserir_score @fase, '00140310', 101, 4, 1
+	 EXEC inserir_score @fase, '925', 102, 1, 0
+	 EXEC inserir_score @fase, '00340321', 102, 5, 0
+	 EXEC inserir_score @fase, '997', 102, 6, 0
+	 EXEC inserir_score @fase, '658', 103, 2, 1
+	 EXEC inserir_score @fase, '749', 103, 3, 1
+	 EXEC inserir_score @fase, '00114003', 103, 4, 1
+	 EXEC inserir_score @fase, '00302041', 103, 7, 1
+	 EXEC inserir_score @fase, '00024421', 103, 8, 1
+	 EXEC inserir_score @fase, '776', 103, 9, 1
+	 EXEC inserir_score @fase, '960', 104, 2, 1
+	 EXEC inserir_score @fase, '670', 104, 3, 1
+	 EXEC inserir_score @fase, '00134132', 104, 4, 1
+	 EXEC inserir_score @fase, '00422133', 104, 7, 1
+	 EXEC inserir_score @fase, '00214031', 104, 8, 1
+	 EXEC inserir_score @fase, '704', 104, 9, 1
+	 EXEC inserir_score @fase, '00404431', 104, 12, 1
+	 EXEC inserir_score @fase, '00444013', 104, 14, 1
+	 EXEC inserir_score @fase, '994', 105, 1, 0
+	 EXEC inserir_score @fase, '00202313', 105, 5, 0
+	 EXEC inserir_score @fase, '140', 105, 6, 0
+	 EXEC inserir_score @fase, '843', 106, 2, 1
+	 EXEC inserir_score @fase, '484', 106, 3, 1
+	 EXEC inserir_score @fase, '00343310', 106, 4, 1
+	 EXEC inserir_score @fase, '00030034', 106, 7, 1
+	 EXEC inserir_score @fase, '00424100', 106, 8, 1
+	 EXEC inserir_score @fase, '292', 106, 9, 1
+	 EXEC inserir_score @fase, '369', 107, 2, 1
+	 EXEC inserir_score @fase, '804', 107, 3, 1
+	 EXEC inserir_score @fase, '00223334', 107, 4, 1
+	 EXEC inserir_score @fase, '00132201', 107, 7, 1
+	 EXEC inserir_score @fase, '00300010', 107, 8, 1
+	 EXEC inserir_score @fase, '502', 107, 9, 1
+	 EXEC inserir_score @fase, '00004131', 107, 12, 1
+	 EXEC inserir_score @fase, '00200043', 107, 14, 1
+	 EXEC inserir_score @fase, '785', 108, 1, 0
+	 EXEC inserir_score @fase, '00242041', 108, 5, 0
+	 EXEC inserir_score @fase, '61', 108, 6, 0
+	 EXEC inserir_score @fase, '694', 109, 2, 1
+	 EXEC inserir_score @fase, '828', 109, 3, 1
+	 EXEC inserir_score @fase, '00333403', 109, 4, 1
+	 EXEC inserir_score @fase, '00434101', 109, 7, 1
+	 EXEC inserir_score @fase, '213', 110, 2, 1
+	 EXEC inserir_score @fase, '217', 110, 3, 1
+	 EXEC inserir_score @fase, '00243134', 110, 4, 1
+	 EXEC inserir_score @fase, '00402124', 110, 7, 1
+	 EXEC inserir_score @fase, '00441230', 110, 8, 1
+	 EXEC inserir_score @fase, '295', 110, 9, 1
+	 EXEC inserir_score @fase, '645', 111, 1, 0
+	 EXEC inserir_score @fase, '00311230', 111, 5, 0
+	 EXEC inserir_score @fase, '417', 111, 6, 0
+	 EXEC inserir_score @fase, '00101222', 111, 10, 0
+	 EXEC inserir_score @fase, '757', 111, 11, 0
+	 EXEC inserir_score @fase, '00212112', 111, 13, 0
+	 EXEC inserir_score @fase, '00330414', 111, 15, 0
+	 EXEC inserir_score @fase, '244', 112, 2, 1
+	 EXEC inserir_score @fase, '732', 112, 3, 1
+	 EXEC inserir_score @fase, '744', 113, 2, 1
+	 EXEC inserir_score @fase, '741', 113, 3, 1
+	 EXEC inserir_score @fase, '00334403', 113, 4, 1
+	 EXEC inserir_score @fase, '00111231', 113, 7, 1
+	 EXEC inserir_score @fase, '996', 114, 1, 0
+	 EXEC inserir_score @fase, '00203030', 114, 5, 0
+	 EXEC inserir_score @fase, '599', 114, 6, 0
+	 EXEC inserir_score @fase, '00341223', 114, 10, 0
+	 EXEC inserir_score @fase, '857', 114, 11, 0
+	 EXEC inserir_score @fase, '00133411', 114, 13, 0
+	 EXEC inserir_score @fase, '108', 115, 2, 1
+	 EXEC inserir_score @fase, '414', 115, 3, 1
+	 EXEC inserir_score @fase, '00430331', 115, 4, 1
+	 EXEC inserir_score @fase, '00102321', 115, 7, 1
+	 EXEC inserir_score @fase, '00303044', 115, 8, 1
+	 EXEC inserir_score @fase, '627', 115, 9, 1
+	 EXEC inserir_score @fase, '00220233', 115, 12, 1
+	 EXEC inserir_score @fase, '654', 116, 2, 1
+	 EXEC inserir_score @fase, '458', 116, 3, 1
+	 EXEC inserir_score @fase, '00432213', 116, 4, 1
+	 EXEC inserir_score @fase, '00122331', 116, 7, 1
+	 EXEC inserir_score @fase, '00102414', 116, 8, 1
+	 EXEC inserir_score @fase, '610', 116, 9, 1
+	 EXEC inserir_score @fase, '00304231', 116, 12, 1
+	 EXEC inserir_score @fase, '426', 117, 2, 1
+	 EXEC inserir_score @fase, '350', 117, 3, 1
+	 EXEC inserir_score @fase, '00402002', 117, 4, 1
+	 EXEC inserir_score @fase, '00113221', 117, 7, 1
+	 EXEC inserir_score @fase, '00243404', 117, 8, 1
+	 EXEC inserir_score @fase, '673', 117, 9, 1
+	 EXEC inserir_score @fase, '268', 118, 1, 0
+	 EXEC inserir_score @fase, '00234404', 118, 5, 0
+	 EXEC inserir_score @fase, '424', 118, 6, 0
+	 EXEC inserir_score @fase, '299', 119, 2, 1
+	 EXEC inserir_score @fase, '416', 119, 3, 1
+	 EXEC inserir_score @fase, '00444340', 119, 4, 1
+	 EXEC inserir_score @fase, '00033443', 119, 7, 1
+	 EXEC inserir_score @fase, '00323421', 119, 8, 1
+	 EXEC inserir_score @fase, '968', 119, 9, 1
+	 EXEC inserir_score @fase, '250', 120, 1, 0
+	 EXEC inserir_score @fase, '00120410', 120, 5, 0
+	 EXEC inserir_score @fase, '839', 120, 6, 0
+	 EXEC inserir_score @fase, '00122411', 120, 10, 0
+	 EXEC inserir_score @fase, '816', 120, 11, 0
+	 EXEC inserir_score @fase, '745', 121, 2, 1
+	 EXEC inserir_score @fase, '582', 121, 3, 1
+	 EXEC inserir_score @fase, '00240440', 121, 4, 1
+	 EXEC inserir_score @fase, '00122303', 121, 7, 1
+	 EXEC inserir_score @fase, '00134042', 121, 8, 1
+	 EXEC inserir_score @fase, '366', 121, 9, 1
+	 EXEC inserir_score @fase, '424', 122, 1, 0
+	 EXEC inserir_score @fase, '290', 123, 2, 1
+	 EXEC inserir_score @fase, '155', 123, 3, 1
+	 EXEC inserir_score @fase, '00312211', 123, 4, 1
+	 EXEC inserir_score @fase, '00314201', 123, 7, 1
+	 EXEC inserir_score @fase, '00242033', 123, 8, 1
+	 EXEC inserir_score @fase, '511', 123, 9, 1
+	 EXEC inserir_score @fase, '00321243', 123, 12, 1
+	 EXEC inserir_score @fase, '603', 124, 1, 0
+	 EXEC inserir_score @fase, '00021444', 124, 5, 0
+	 EXEC inserir_score @fase, '585', 124, 6, 0
+	 EXEC inserir_score @fase, '572', 125, 2, 1
+	 EXEC inserir_score @fase, '945', 125, 3, 1
+	 EXEC inserir_score @fase, '00342244', 125, 4, 1
+	 EXEC inserir_score @fase, '00203443', 125, 7, 1
+	 EXEC inserir_score @fase, '00012133', 125, 8, 1
+	 EXEC inserir_score @fase, '238', 125, 9, 1
+	 EXEC inserir_score @fase, '00441201', 125, 12, 1
+	 EXEC inserir_score @fase, '00320333', 125, 14, 1
+	 EXEC inserir_score @fase, '567', 126, 1, 0
+	 EXEC inserir_score @fase, '400', 127, 1, 0
+	 EXEC inserir_score @fase, '00314323', 127, 5, 0
+	 EXEC inserir_score @fase, '998', 127, 6, 0
+	 EXEC inserir_score @fase, '720', 128, 2, 1
+	 EXEC inserir_score @fase, '786', 128, 3, 1
+	 EXEC inserir_score @fase, '00442043', 128, 4, 1
+	 EXEC inserir_score @fase, '00113022', 128, 7, 1
+	 EXEC inserir_score @fase, '00120000', 128, 8, 1
+	 EXEC inserir_score @fase, '157', 128, 9, 1
+	 EXEC inserir_score @fase, '00010130', 128, 12, 1
+	 EXEC inserir_score @fase, '27', 129, 1, 0
+	 EXEC inserir_score @fase, '587', 130, 2, 1
+	 EXEC inserir_score @fase, '321', 130, 3, 1
+	 EXEC inserir_score @fase, '00013232', 130, 4, 1
+	 EXEC inserir_score @fase, '195', 131, 2, 1
+	 EXEC inserir_score @fase, '975', 131, 3, 1
+	 EXEC inserir_score @fase, '00324042', 131, 4, 1
+	 EXEC inserir_score @fase, '00121033', 131, 7, 1
+	 EXEC inserir_score @fase, '00223004', 131, 8, 1
+	 EXEC inserir_score @fase, '913', 132, 2, 1
+	 EXEC inserir_score @fase, '623', 132, 3, 1
+	 EXEC inserir_score @fase, '00244032', 132, 4, 1
+	 EXEC inserir_score @fase, '00211210', 132, 7, 1
+	 EXEC inserir_score @fase, '00441144', 132, 8, 1
+	 EXEC inserir_score @fase, '866', 132, 9, 1
+	 EXEC inserir_score @fase, '582', 133, 1, 0
+	 EXEC inserir_score @fase, '00341344', 133, 5, 0
+	 EXEC inserir_score @fase, '797', 133, 6, 0
+	 EXEC inserir_score @fase, '00212241', 133, 10, 0
+	 EXEC inserir_score @fase, '423', 133, 11, 0
+	 EXEC inserir_score @fase, '882', 134, 1, 0
+	 EXEC inserir_score @fase, '00322204', 134, 5, 0
+	 EXEC inserir_score @fase, '571', 134, 6, 0
+	 EXEC inserir_score @fase, '00320341', 134, 10, 0
+	 EXEC inserir_score @fase, '139', 134, 11, 0
+	 EXEC inserir_score @fase, '00223242', 134, 13, 0
+	 EXEC inserir_score @fase, '00314422', 134, 15, 0
+	 EXEC inserir_score @fase, '606', 135, 2, 1
+	 EXEC inserir_score @fase, '549', 135, 3, 1
+	 EXEC inserir_score @fase, '882', 137, 1, 0
+	 EXEC inserir_score @fase, '00320432', 137, 5, 0
+	 EXEC inserir_score @fase, '234', 137, 6, 0
+	 EXEC inserir_score @fase, '852', 138, 2, 1
+	 EXEC inserir_score @fase, '433', 138, 3, 1
+	 EXEC inserir_score @fase, '00214243', 138, 4, 1
+	 EXEC inserir_score @fase, '00001042', 138, 7, 1
+	 EXEC inserir_score @fase, '00330042', 138, 8, 1
+	 EXEC inserir_score @fase, '708', 138, 9, 1
+	 EXEC inserir_score @fase, '00021300', 138, 12, 1
+	 EXEC inserir_score @fase, '00331124', 138, 14, 1
+	 EXEC inserir_score @fase, '562', 139, 2, 1
+
 END
 GO
 
@@ -825,6 +684,61 @@ DROP PROCEDURE popular_score_final
 CREATE PROCEDURE popular_score_final (@fase INT)
 AS
 BEGIN
+	DECLARE	@score VARCHAR(8),
+			@atleta INT,
+			@prova INT,
+			@sexo BIT
+
+	SET @prova = 1
+	
+	WHILE (@prova <= 16)
+	BEGIN
+		DECLARE cur CURSOR FOR	SELECT	m.atleta_id,
+										a.sexo
+								FROM	f_melhores(@fase -1,  @prova) m, atleta a
+								WHERE	m.atleta_id = a.id
+		OPEN cur
+		FETCH NEXT FROM cur into @atleta, @sexo
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			DECLARE @tipo BIT
+			SET @tipo = (SELECT tipo FROM prova WHERE id = @prova)
+
+			IF (@tipo > 0 )
+			BEGIN
+				DECLARE @counter INT
+				SET @counter = 3
+				SET @score = '00'
+
+				WHILE (@counter > 0)
+				BEGIN
+					SET @score = @score + (SELECT FLOOR(RAND()*(5-0)+0))
+					SET @score = @score + (SELECT FLOOR(RAND()*(9-0)+0))
+					SET @counter = @counter - 1
+				END
+				EXEC inserir_score @fase, @score, @atleta, @prova, @sexo
+				FETCH NEXT FROM cur into @atleta, @sexo
+			END
+			ELSE 
+			BEGIN
+				DECLARE @quantidade INT
+				SET @quantidade = (SELECT FLOOR(RAND()*(6-1)+1))
+
+				WHILE (@quantidade > 0)
+				BEGIN
+					SET @score = (SELECT FLOOR(RAND()*(1000-15)+15))
+					EXEC inserir_score @fase, @score, @atleta, @prova, @sexo
+					FETCH NEXT FROM cur into @atleta, @sexo
+					SET @quantidade = @quantidade -1
+				END
+			END
+			
+		END
+
+		CLOSE cur
+		DEALLOCATE cur
+	SET @prova = @prova + 1
+	END
 END
 GO
 
@@ -846,8 +760,9 @@ SELECT	id,
 FROM	prova
 
 EXEC popular_score 0
+EXEC popular_score_final 1
 
-SELECT	* FROM atleta
-DELETE FROM 
+SELECT * FROM score WHERE fase = 1
+DELETE FROM score WHERE fase = 1
 
-SELECT * FROM f_melhores(0, 1)
+SELECT atleta_id FROM f_melhores(1, 2)
