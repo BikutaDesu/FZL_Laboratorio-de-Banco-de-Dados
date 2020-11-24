@@ -74,7 +74,7 @@ END
 GO
 
 -- Insert Triggers
-/**DROP TRIGGER t_inserir_atleta
+-- DROP TRIGGER t_inserir_atleta
 CREATE TRIGGER t_inserir_atleta ON atleta FOR INSERT
 AS
 BEGIN
@@ -86,7 +86,7 @@ BEGIN
 		ROLLBACK TRANSACTION
 	END
 END
-GO**/
+GO
 
 --DROP TRIGGER t_inserir_score_before
 CREATE TRIGGER t_inserir_score_before ON score FOR INSERT
@@ -703,8 +703,11 @@ BEGIN
 
 				WHILE (@counter > 0)
 				BEGIN
-					SET @score = @score + (SELECT FLOOR(RAND()*(5-0)+0))
-					SET @score = @score + (SELECT FLOOR(RAND()*(9-0)+0))
+					DECLARE @dezena INT,
+							@unidade INT
+					SET @dezena = (SELECT FLOOR(RAND()*(5-0)+0))
+					SET @unidade = (SELECT FLOOR(RAND()*(9-0)+0))
+					SET @score = @score + CAST(@dezena AS CHAR(1)) + CAST(@unidade AS CHAR(1))
 					SET @counter = @counter - 1
 				END
 				EXEC inserir_score @fase, @score, @atleta, @prova, @sexo
@@ -753,8 +756,3 @@ FROM	prova
 
 EXEC popular_score 0
 EXEC popular_score_final 1
-
-SELECT * FROM score WHERE fase = 1
-DELETE FROM score WHERE fase = 1
-
-SELECT atleta_id FROM f_melhores(1, 2)

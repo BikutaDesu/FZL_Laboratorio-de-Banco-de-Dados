@@ -32,6 +32,7 @@
 				rankingFinal: [],
 				rankingAtual: [],
 				rankingIndex: 1,
+				faseFinal: false,
 				total: 0,
 				tipoProva: ''
 			}
@@ -75,6 +76,12 @@
 								<td>{{ranking.nomeAtleta}}</td>
 								<td>{{getScore(ranking.score)}}</td>
 								<td>{{ranking.pais}}</td>
+								<div v-if="faseFinal == true">
+									<td v-if="index == 0"><img src="https://image.flaticon.com/icons/png/512/179/179249.png" style="width: 35px"></td>
+									<td v-if="index == 1"><img src="https://image.flaticon.com/icons/png/512/179/179251.png" style="width: 35px"></td>
+									<td v-if="index == 2"><img src="https://image.flaticon.com/icons/png/512/179/179250.png" style="width: 35px"></td>
+								</div>
+								
 							</tr>
 						</tbody>
 					</table>
@@ -98,9 +105,9 @@
 				.then(response => {
 					this.rankingFinal = response.data
 					if (this.tipoProva == 'C') {
-						this.rankingInicial.sort((a, b) => b.score + a.score)
+						this.rankingFinal.sort((a, b) => b.score + a.score)
 					}else {
-						this.rankingInicial.sort((a, b) => b.score - a.score)
+						this.rankingFinal.sort((a, b) => b.score - a.score)
 					}
 					this.total += (response.data.length === 0) ? 0 : 1
 				})
@@ -108,10 +115,12 @@
 			setRanking() {
 				if (this.rankingIndex == 1) {
 					this.rankingAtual = this.rankingInicial
-					
+					this.faseFinal = false
 				}else if (this.rankingIndex == 2) {
 					this.rankingAtual = this.rankingFinal
+					this.faseFinal = true
 				}
+				console.log(this.faseFinal)
 			},
 			changeRanking(event) {
 				this.rankingIndex = event.target.value
@@ -141,7 +150,6 @@
 				
 			},
 			getScore(score) {
-				console.log(this.tipoProva)
 				if (this.tipoProva === 'C') {
 					newScore = score.substring(0,2) + ':' + score.substring(2,4) + ':' + score.substring(4,6) + ':' + score.substring(6,8) 
 					return newScore
