@@ -1,5 +1,7 @@
 package br.edu.fateczl.WebServiceExemplo.model.dto;
 
+import br.edu.fateczl.WebServiceExemplo.model.entity.Time;
+
 public class TimeDTO {
 
 	private Integer id;
@@ -16,6 +18,13 @@ public class TimeDTO {
 		this.cidade = cidade;
 	}
 
+	public TimeDTO(Time time) {
+		super();
+		this.id = time.getId();
+		this.nome = time.getNome();
+		this.cidade = time.getCidade();
+	}
+	
 	public Integer getId() {
 		return id;
 	}

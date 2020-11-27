@@ -12,10 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Jogadores")
-@NamedNativeQuery(name = "Jogadores.findJogadoresDataConv", query = "SELECT j.id as id_jogador, j.nome, j.sexo, j.altura, "
+@NamedNativeQuery(name = "Jogador.findJogadoresDataConv", query = "SELECT j.id as id_jogador, j.nome, j.sexo, j.altura, "
 		+ "CONVERT(CHAR(10), j.dt_nasc, 103) AS dt_nasc, " + "j.id_time as fk_id_time, t.id as id_time, t.nome, "
 		+ "t.cidade FROM jogadores " + "INNER JOIN times " + "ON j.id_time = t.id", resultClass = Jogador.class)
-@NamedNativeQuery(name = "Jogadores.findJogadoresDataConv", query = "SELECT j.id as id_jogador, j.nome, j.sexo, j.altura, "
+@NamedNativeQuery(name = "Jogador.findJogadorDataConv", query = "SELECT j.id as id_jogador, j.nome, j.sexo, j.altura, "
 		+ "CONVERT(CHAR(10), j.dt_nasc, 103) AS dt_nasc, " + "j.id_time as fk_id_time, t.id as id_time, t.nome, "
 		+ "t.cidade FROM jogadores " + "INNER JOIN times " + "ON j.id_time = t.id " + "WHERE j.id = ?1", resultClass = Jogador.class)
 public class Jogador {
@@ -37,9 +37,9 @@ public class Jogador {
 	@Column(name = "dt_nasc")
 	private String dataNasc;
 
-	@ManyToOne(targetEntity = Times.class)
+	@ManyToOne(targetEntity = Time.class)
 	@JoinColumn(name = "id_time")
-	private Times times;
+	private Time time;
 
 	public Integer getId() {
 		return id;
@@ -81,12 +81,12 @@ public class Jogador {
 		this.dataNasc = dataNasc;
 	}
 
-	public Times getTimes() {
-		return times;
+	public Time getTime() {
+		return time;
 	}
 
-	public void setTimes(Times times) {
-		this.times = times;
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class Jogador {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
-		result = prime * result + ((times == null) ? 0 : times.hashCode());
+		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
 
@@ -136,10 +136,10 @@ public class Jogador {
 				return false;
 		} else if (!sexo.equals(other.sexo))
 			return false;
-		if (times == null) {
-			if (other.times != null)
+		if (time == null) {
+			if (other.time != null)
 				return false;
-		} else if (!times.equals(other.times))
+		} else if (!time.equals(other.time))
 			return false;
 		return true;
 	}
@@ -147,7 +147,7 @@ public class Jogador {
 	@Override
 	public String toString() {
 		return "Jogador [id=" + id + ", nome=" + nome + ", sexo=" + sexo + ", altura=" + altura + ", dataNasc="
-				+ dataNasc + ", times=" + times + "]";
+				+ dataNasc + ", times=" + time + "]";
 	}
 	
 }

@@ -15,14 +15,14 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Times")
-@NamedStoredProcedureQuery(name = "Times.spCrudTimes", procedureName = "sp_crud_times", parameters = {
+@NamedStoredProcedureQuery(name = "Time.spCrudTimes", procedureName = "sp_crud_times", parameters = {
 		@StoredProcedureParameter(mode = ParameterMode.IN, name = "cod", type = String.class),
 		@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = Integer.class),
 		@StoredProcedureParameter(mode = ParameterMode.IN, name = "nome", type = String.class),
 		@StoredProcedureParameter(mode = ParameterMode.IN, name = "cidade", type = String.class),
 		@StoredProcedureParameter(mode = ParameterMode.OUT, name = "saida", type = String.class) })
 
-public class Times implements Serializable {
+public class Time implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -38,15 +38,15 @@ public class Times implements Serializable {
 
 	/* Os parâmetros da StoredProcedure também precisam estar na Entity */
 	@Transient
-	private Integer cod;
+	private String cod;
 	
 	@Transient
 	private String saida;
 
-	public Times() {
+	public Time() {
 	}
 
-	public Times(Integer id, String nome, String cidade, Integer cod, String saida) {
+	public Time(Integer id, String nome, String cidade, String cod, String saida) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -79,11 +79,11 @@ public class Times implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public Integer getCod() {
+	public String getCod() {
 		return cod;
 	}
 
-	public void setCod(Integer cod) {
+	public void setCod(String cod) {
 		this.cod = cod;
 	}
 
@@ -115,7 +115,7 @@ public class Times implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Times other = (Times) obj;
+		Time other = (Time) obj;
 		if (cidade == null) {
 			if (other.cidade != null)
 				return false;
